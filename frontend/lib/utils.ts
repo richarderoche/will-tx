@@ -128,3 +128,15 @@ export function getFirstSectionInfo(data: PageBuilderData) {
     firstPbSection?.titleMode === 'hero'
   return { firstIsHero, firstPbSectionKey }
 }
+
+export function formatHtmlId(text: string) {
+  return text
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}

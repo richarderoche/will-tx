@@ -5,7 +5,7 @@ import {
   getRowWidthTitle,
   getTypeTitles,
 } from '../../lib/utils'
-import { rowWidthField, sectionNameField } from '../fields'
+import { rowWidthField } from '../fields'
 import { columnFields } from './column'
 
 const vList = [
@@ -25,7 +25,6 @@ export default defineType({
       name: 'sectionSettings',
       type: 'pbSectionSettings',
     }),
-    defineField(sectionNameField),
     defineField({
       ...rowWidthField,
       validation: (Rule) => Rule.required(),
@@ -114,7 +113,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      sectionName: 'sectionName',
+      sectionName: 'sectionSettings.sectionTitle',
       rowWidth: 'rowWidth',
     },
     prepare({ sectionName, rowWidth }) {

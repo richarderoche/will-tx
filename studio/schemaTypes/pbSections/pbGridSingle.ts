@@ -1,7 +1,7 @@
 import { IconLayoutRows } from '@tabler/icons-react'
 import { defineField, defineType } from 'sanity'
 import { getRowWidthTitle, getTypeTitles } from '../../lib/utils'
-import { rowWidthField, sectionNameField } from '../fields'
+import { rowWidthField } from '../fields'
 import { columnFields } from './column'
 
 export default defineType({
@@ -15,13 +15,12 @@ export default defineType({
       name: 'sectionSettings',
       type: 'pbSectionSettings',
     }),
-    defineField(sectionNameField),
     defineField(rowWidthField),
     ...columnFields,
   ],
   preview: {
     select: {
-      sectionName: 'sectionName',
+      sectionName: 'sectionSettings.sectionTitle',
       rowWidth: 'rowWidth',
       blocks: 'pbBlocks',
     },

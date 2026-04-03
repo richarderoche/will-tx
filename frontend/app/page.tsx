@@ -17,8 +17,7 @@ export default async function IndexRoute() {
 
   return (
     <PageWrapper className={firstIsHero ? '' : 'pt-header'}>
-      <StyleGuide />
-      <div className="dark-theme py-gut-300">
+      <div className="dark-theme py-gut-300 hidden">
         <StyleGuide />
       </div>
       <PageBuilder data={data} firstPbSectionKey={firstPbSectionKey ?? ''} />

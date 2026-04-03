@@ -1,5 +1,6 @@
 'use client'
 
+import { formatHtmlId } from '@/lib/utils'
 import { PbSections } from '@/sanity.types'
 import { PageBuilderData } from '@/types'
 import {
@@ -10,7 +11,6 @@ import {
 import SectionGridDouble from './SectionGridDouble'
 import SectionGridMulti from './SectionGridMulti'
 import SectionGridSingle from './SectionGridSingle'
-import SectionTitleHero from './SectionTitleHero'
 
 export interface PageBuilderContentProps {
   data: PageBuilderData
@@ -33,10 +33,14 @@ export default function PageBuilderSections({
       {pbSections.map((section) => {
         const { _key, sectionSettings } = section
         const {
+          backgroundImage,
+          backgroundImageOpacity,
+          colorTheme = 'light-theme',
           enableSection = true,
-          sectionId,
-          marginTop,
           marginBottom,
+          marginTop,
+          enableAnchorLink,
+          sectionTitle,
         } = sectionSettings || {}
 
         if (!enableSection) return null
@@ -45,9 +49,13 @@ export default function PageBuilderSections({
 
         return (
           <section
-            id={sectionId ? sectionId : 'section-' + _key}
+            id={
+              enableAnchorLink && sectionTitle
+                ? formatHtmlId(sectionTitle)
+                : 'section-' + _key
+            }
             key={_key}
-            className="pt-gut first:pt-0"
+            className={colorTheme}
             data-sanity={getDataAttribute(sectionPath)}
           >
             <div
@@ -69,12 +77,6 @@ export default function PageBuilderSections({
                 )}
                 {section._type === 'pbGridDouble' && (
                   <SectionGridDouble section={section} sectionKey={_key} />
-                )}
-                {section._type === 'pbTitleSection' && (
-                  <SectionTitleHero
-                    section={section}
-                    isFirst={_key === firstPbSectionKey}
-                  />
                 )}
               </SanityVisualEditingPath>
             </div>

@@ -1,7 +1,7 @@
 import { IconLayoutColumns } from '@tabler/icons-react'
 import { defineField, defineType } from 'sanity'
 import { getRowWidthTitle } from '../../lib/utils'
-import { rowWidthField, sectionNameField } from '../fields'
+import { rowWidthField } from '../fields'
 
 export default defineType({
   title: 'Grid: Two Column',
@@ -14,7 +14,6 @@ export default defineType({
       name: 'sectionSettings',
       type: 'pbSectionSettings',
     }),
-    defineField(sectionNameField),
     defineField(rowWidthField),
     defineField({
       title: 'Column Proportions (Desktop & Tablet only)',
@@ -56,7 +55,7 @@ export default defineType({
   ],
   preview: {
     select: {
-      sectionName: 'sectionName',
+      sectionName: 'sectionSettings.sectionTitle',
       rowWidth: 'rowWidth',
     },
     prepare({ sectionName, rowWidth }) {
