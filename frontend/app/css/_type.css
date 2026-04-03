@@ -1,5 +1,6 @@
 @theme inline {
-  --font-sans: var(--mori), 'Helvetica Neue', helvetica, sans-serif;
+  --font-sans: 'Helvetica Neue', var(--inter), 'Inter', sans-serif;
+  --font-mono: var(--ibm-plex-mono), monospace;
 }
 
 /*
@@ -9,38 +10,38 @@ Example: ts-size-24/40 → font-size = var(--gut) × (24÷36)
 
 /* Headings */
 .ts-h1 {
-  @apply leading-130 ts-size-40/18 lg:ts-size-40/40;
+  @apply leading-130 ts-size-40/18 md:ts-size-40/30 lg:ts-size-40/40;
 }
 
 .ts-h2 {
-  @apply leading-130 ts-size-32/18 lg:ts-size-32/40;
+  @apply leading-130 ts-size-32/18 md:ts-size-32/30 lg:ts-size-32/40;
 }
 
 .ts-h3 {
-  @apply leading-130 font-medium ts-size-24/18 lg:ts-size-24/40;
+  @apply leading-130 font-medium ts-size-24/18 md:ts-size-24/30 lg:ts-size-24/40;
 }
 
 .ts-h4 {
-  @apply leading-130 ts-size-22/18 lg:ts-size-22/40;
+  @apply leading-130 ts-size-22/18 md:ts-size-22/30 lg:ts-size-22/40;
 }
 
 /* Labels */
 .ts-h5 {
-  @apply uppercase leading-110 tracking-4 ts-size-13/18 lg:ts-size-13/40;
+  @apply font-mono uppercase leading-110 tracking-4 ts-size-13/18 md:ts-size-13/30 lg:ts-size-13/40;
 }
 
 /* Paragraphs */
 
 .ts-p-md {
-  @apply leading-130 ts-size-20/18 lg:ts-size-20/40;
+  @apply leading-130 ts-size-18/18 md:ts-size-20/30 lg:ts-size-20/40;
 }
 
 .ts-p-sm {
-  @apply leading-130 ts-size-16/18 lg:ts-size-16/40;
+  @apply leading-130 ts-size-14/18 md:ts-size-16/30 lg:ts-size-16/40;
 }
 
 .ts-p-xs {
-  @apply leading-130 ts-size-12/18 lg:ts-size-12/40;
+  @apply leading-130 ts-size-12/18 md:ts-size-12/30 lg:ts-size-12/40;
 }
 
 /* Misc */

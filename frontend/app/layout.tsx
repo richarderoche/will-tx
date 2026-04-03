@@ -9,6 +9,7 @@ import { settingsQuery } from '@/sanity/lib/queries'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { Metadata, Viewport } from 'next'
 import { VisualEditing } from 'next-sanity/visual-editing'
+import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import { draftMode } from 'next/headers'
 import type { Image } from 'sanity'
@@ -66,26 +67,22 @@ export const viewport: Viewport = {
   themeColor: '#000',
 }
 
-const sansFont = localFont({
+const sansFont = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--inter',
+})
+
+const monoFont = localFont({
   src: [
     {
-      path: '../public/fonts/PPMori-Regular.woff2',
+      path: '../public/fonts/IBMPlexMono-Regular.woff2',
       weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/PPMori-RegularItalic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../public/fonts/PPMori-Bold.woff2',
-      weight: '600',
       style: 'normal',
     },
   ],
-  display: 'swap', // or replace with preload: true
-  variable: '--mori',
+  variable: '--ibm-plex-mono',
 })
 
 export default async function RootLayout({
@@ -98,7 +95,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sansFont.variable} light-theme`}
+      className={`${monoFont.variable} ${sansFont.variable} light-theme`}
       data-scroll-behavior="smooth"
     >
       <body>

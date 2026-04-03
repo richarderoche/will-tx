@@ -29,7 +29,7 @@ export default function SectionGridMulti({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SiteGrid yGaps={true} looseColSpacing={looseColSpacing}>
+          <SiteGrid yGaps={true} looseColSpacing={false}>
             {columns.map((col) => (
               <SanityVisualEditingPath
                 key={col._key}

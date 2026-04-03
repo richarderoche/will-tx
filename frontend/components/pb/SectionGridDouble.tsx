@@ -62,7 +62,7 @@ export default function SectionGridDouble({
         <div className={outerClasses}>
           <SiteGrid
             yGaps={true}
-            looseColSpacing={rowWidth && rowWidth > 8 ? true : false}
+            looseColSpacing={false}
             yAlignment={yAlignment}
           >
             {columnOne && columnOneBlocks.length > 0 && (

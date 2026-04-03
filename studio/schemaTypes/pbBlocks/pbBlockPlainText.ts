@@ -6,13 +6,9 @@ export const textStyleOptions = [
   { title: 'H2', value: 'ts-h2' },
   { title: 'H3', value: 'ts-h3' },
   { title: 'H4', value: 'ts-h4' },
-  { title: 'Body XL', value: 'ts-p-xl' },
-  { title: 'Body Large', value: 'ts-p-lg' },
   { title: 'Body Medium', value: 'ts-p-md' },
   { title: 'Body Small', value: 'ts-p-sm' },
-  { title: 'Body XS', value: 'ts-p-xs' },
   { title: 'Label', value: 'ts-h5' },
-  { title: 'Label Small', value: 'ts-h6' },
 ]
 
 // If adding options, add classes to frontend/safelist-classes.txt

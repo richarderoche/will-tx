@@ -55,7 +55,6 @@ export default defineType({
         { title: 'Heading 3', value: 'h3' },
         { title: 'Heading 4', value: 'h4' },
         { title: 'Label', value: 'h5' },
-        { title: 'Label Small', value: 'h6' },
       ],
     },
   ],
