@@ -5,7 +5,7 @@ interface SiteWidthProps {
   className?: string
 }
 
-export const SITE_MAX_WIDTH = 2000
+export const SITE_MAX_WIDTH = 1440
 
 export default function SiteWidth({ children, className }: SiteWidthProps) {
   return (

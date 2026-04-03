@@ -88,21 +88,9 @@ const hStyles = [
     name: 'H5 Label',
     style: 'ts-h5',
   },
-  {
-    name: 'H6 Label',
-    style: 'ts-h6',
-  },
 ]
 
 const pStyles = [
-  {
-    name: 'P XL',
-    style: 'ts-p-xl',
-  },
-  {
-    name: 'P LG',
-    style: 'ts-p-lg',
-  },
   {
     name: 'P MD (Default)',
     style: 'ts-p-md',

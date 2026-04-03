@@ -4,55 +4,43 @@
 
 /*
 Use ts-size utility to set font size as proportion of gut size.
-Example: ts-size-24/36 → font-size = var(--gut) × (24÷36)
+Example: ts-size-24/40 → font-size = var(--gut) × (24÷36)
 */
 
 /* Headings */
 .ts-h1 {
-  @apply leading-110 -tracking-2 font-bold ts-size-40/18 lg:ts-size-70/36;
+  @apply leading-130 ts-size-40/18 lg:ts-size-40/40;
 }
 
 .ts-h2 {
-  @apply leading-110 -tracking-2 font-bold ts-size-32/18 lg:ts-size-56/36;
+  @apply leading-130 ts-size-32/18 lg:ts-size-32/40;
 }
 
 .ts-h3 {
-  @apply leading-110 -tracking-2 font-bold ts-size-26/18 lg:ts-size-43/36;
+  @apply leading-130 font-medium ts-size-24/18 lg:ts-size-24/40;
 }
 
 .ts-h4 {
-  @apply leading-110 -tracking-2 font-bold ts-size-20/18 lg:ts-size-32/36;
+  @apply leading-130 ts-size-22/18 lg:ts-size-22/40;
 }
 
 /* Labels */
 .ts-h5 {
-  @apply uppercase leading-none tracking-5 font-bold ts-size-16/18 lg:ts-size-20/36;
-}
-
-.ts-h6 {
-  @apply uppercase leading-none tracking-5 font-bold ts-size-10/18 lg:ts-size-12/36;
+  @apply uppercase leading-110 tracking-4 ts-size-13/18 lg:ts-size-13/40;
 }
 
 /* Paragraphs */
 
-.ts-p-xl {
-  @apply leading-130 ts-size-19/18 lg:ts-size-26/36;
-}
-
-.ts-p-lg {
-  @apply leading-130 ts-size-17/18 lg:ts-size-22/36;
-}
-
 .ts-p-md {
-  @apply leading-130 ts-size-15/18 lg:ts-size-18/36;
+  @apply leading-130 ts-size-20/18 lg:ts-size-20/40;
 }
 
 .ts-p-sm {
-  @apply leading-130 ts-size-13/18 lg:ts-size-15/36;
+  @apply leading-130 ts-size-16/18 lg:ts-size-16/40;
 }
 
 .ts-p-xs {
-  @apply leading-130 ts-size-11/18 lg:ts-size-13/36;
+  @apply leading-130 ts-size-12/18 lg:ts-size-12/40;
 }
 
 /* Misc */
