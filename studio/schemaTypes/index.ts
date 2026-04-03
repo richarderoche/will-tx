@@ -1,14 +1,11 @@
-import page from './documents/page'
-import project from './documents/project'
-import redirect from './documents/redirect'
+//import page from './documents/page'
 import navExternal from './objects/navExternal'
-import navLinks from './objects/navLinks'
-import navPage from './objects/navPage'
 import ptBasic from './objects/ptBasic'
 import ptBody from './objects/ptBody'
 import ptSingle from './objects/ptSingle'
 import ptSlim from './objects/ptSlim'
 import seo from './objects/seo'
+import seoGlobal from './objects/seoGlobal'
 import socialLink from './objects/socialLink'
 import pbBlocks from './pbBlocks'
 import pbBlockButton from './pbBlocks/pbBlockButton'
@@ -36,14 +33,12 @@ export const schemaTypes = [
   home,
   settings,
   // Documents
-  page,
-  project,
-  redirect,
+  //page,
   // Objects
   column,
   navExternal,
-  navLinks,
-  navPage,
+  //navLinks,
+  //navPage,
   pbBlockImage,
   pbBlockButton,
   pbBlocks,
@@ -64,6 +59,7 @@ export const schemaTypes = [
   ptSingle,
   ptSlim,
   seo,
+  seoGlobal,
   socialLink,
 ]
 

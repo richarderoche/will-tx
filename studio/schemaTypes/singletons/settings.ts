@@ -8,14 +8,6 @@ export default defineType({
   icon: CogIcon,
   groups: [
     {
-      name: 'header',
-      title: 'Header',
-    },
-    {
-      name: 'footer',
-      title: 'Footer',
-    },
-    {
       name: 'seo',
       title: 'SEO',
     },
@@ -26,31 +18,8 @@ export default defineType({
   ],
   fields: [
     defineField({
-      name: 'headerNav',
-      title: 'Header Navigation',
-      type: 'navLinks',
-      group: 'header',
-    }),
-    defineField({
-      title: 'Footer Nav',
-      name: 'footerNav',
-      type: 'navLinks',
-      group: 'footer',
-    }),
-    defineField({
-      name: 'socialIcons',
-      title: 'Social Icons',
-      type: 'array',
-      group: 'footer',
-      of: [
-        {
-          type: 'socialLink',
-        },
-      ],
-    }),
-    defineField({
       name: 'title',
-      description: 'Used as the base in the <title> tag for SEO',
+      description: 'Used as the <title> tag for SEO',
       title: 'Site Title',
       type: 'string',
       group: 'seo',
@@ -59,7 +28,7 @@ export default defineType({
       name: 'seo',
       title: 'Global SEO',
       description: 'Fallback SEO content for any page left blank',
-      type: 'seo',
+      type: 'seoGlobal',
       group: 'seo',
     }),
     defineField({

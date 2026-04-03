@@ -1,4 +1,4 @@
-import { DocumentPdfIcon, DocumentSheetIcon } from '@sanity/icons'
+import { DocumentPdfIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -27,20 +27,6 @@ export default defineType({
                   Rule.uri({
                     scheme: ['http', 'https', 'mailto', 'tel'],
                   }),
-              }),
-            ],
-          },
-          {
-            name: 'internalLink',
-            type: 'object',
-            title: 'Internal link',
-            icon: DocumentSheetIcon,
-            fields: [
-              defineField({
-                name: 'reference',
-                type: 'reference',
-                title: 'Reference',
-                to: [{ type: 'page' }],
               }),
             ],
           },

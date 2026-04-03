@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 
   const ogImage = urlForOpenGraphImage(settings?.ogImage as Image)
-  const noIndex = settings?.noIndex ?? false
+  const noIndex = false
   return {
     title: settings?.title
       ? {

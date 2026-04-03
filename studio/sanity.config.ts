@@ -1,9 +1,5 @@
-import { dashboardTool } from '@sanity/dashboard'
 import { visionTool } from '@sanity/vision'
-import { find, without } from 'lodash'
 import { defineConfig } from 'sanity'
-import { vercelWidget } from 'sanity-plugin-dashboard-widget-vercel'
-import { noteField } from 'sanity-plugin-note-field'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes, singletonSchemaTypes } from './schemaTypes'
@@ -24,7 +20,7 @@ const SANITY_STUDIO_PREVIEW_URL =
 */
 export default defineConfig({
   name: 'default',
-  title: 'Sanity / Website',
+  title: 'Sanity / Will TX',
 
   projectId: projectId,
   dataset: dataset,
@@ -50,25 +46,7 @@ export default defineConfig({
     }),
     //muxInput(muxConfig),
     ...(process.env.NODE_ENV !== 'production' ? [visionTool()] : []),
-    dashboardTool({
-      widgets: [vercelWidget()],
-    }),
-    noteField(),
   ],
-
-  tools: (prev: any) => {
-    const dashboardTool = find(prev, { name: 'dashboard' })
-    const toolsWithoutDashboard = without(prev, dashboardTool)
-
-    return [
-      ...toolsWithoutDashboard,
-      {
-        ...dashboardTool,
-        name: 'deploy',
-        title: 'Deploy',
-      },
-    ]
-  },
 
   schema: {
     types: schemaTypes,

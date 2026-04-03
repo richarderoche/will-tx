@@ -119,23 +119,39 @@ const pStyles = [
 
 const ColorSwatches = [
   {
-    name: 'Black',
-    style: 'bg-black text-white',
+    name: 'Brown',
+    style: 'bg-brown text-white',
   },
   {
-    name: 'Gray 900',
-    style: 'bg-gray-900 text-white',
+    name: 'Brown 800',
+    style: 'bg-brown-800 text-white',
   },
   {
-    name: 'Gray 200',
-    style: 'bg-gray-200',
+    name: 'Brown 600',
+    style: 'bg-brown-600 text-white',
+  },
+  {
+    name: 'Brown 500',
+    style: 'bg-brown-500 text-white',
+  },
+  {
+    name: 'Brown 200',
+    style: 'bg-brown-200',
+  },
+  {
+    name: 'Offwhite',
+    style: 'bg-offwhite',
   },
   {
     name: 'White',
     style: 'bg-white',
   },
   {
+    name: 'Salmon',
+    style: 'bg-salmon',
+  },
+  {
     name: 'Accent',
-    style: 'bg-accent',
+    style: 'bg-accent text-white',
   },
 ]

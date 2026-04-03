@@ -100,16 +100,6 @@ export const homePageQuery = defineQuery(`
   *[_type == "home"][0]{
     ...,
     ${pb},
-    showcaseProjects[]{
-      _key,
-      "project": @->{
-        _id,
-        _type,
-        coverImage,
-        "slug": slug.current,
-        title,
-      }
-    },
   }
 `)
 

@@ -1,18 +1,22 @@
 :root {
-  --black-oklch: 0 0 0;
-  --gray-900-oklch: 0.25 0 0;
-  --gray-200-oklch: 0.9 0 0;
+  --brown-oklch: 0.3546 0.0111 44.69;
+  --brown-800-oklch: 0.4966 0.0257 80.55;
+  --brown-600-oklch: 0.6183 0.0104 52.01;
+  --brown-500-oklch: 0.6958 0.0049 34.31;
+  --brown-200-oklch: 0.8133 0.0183 81.32;
+  --offwhite-oklch: 0.9726 0.0124 75.37;
   --white-oklch: 1 0 0;
-  --accent-oklch: 0.6132 0.2078 267.2;
+  --salmon-oklch: 0.8036 0.0489 53.52;
+  --accent-oklch: 0.6937 0.1792 47.49;
 }
 
-.dark-theme {
-  --theme-bg: oklch(var(--black-oklch));
-  --theme-bg-subtle: oklch(var(--gray-900-oklch));
+.light-theme {
+  --theme-bg: oklch(var(--offwhite-oklch));
+  --theme-bg-subtle: oklch(var(--brown-200-oklch));
 
-  --theme-body: oklch(var(--white-oklch));
-
-  --theme-divider: oklch(var(--accent-oklch));
+  --theme-body: oklch(var(--brown-oklch));
+  --theme-fg-subtle: oklch(var(--brown-600-oklch));
+  --theme-divider: oklch(var(--brown-600-oklch));
 
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
@@ -20,13 +24,13 @@
   }
 }
 
-.light-theme {
-  --theme-bg: oklch(var(--white-oklch));
-  --theme-bg-subtle: oklch(var(--gray-200-oklch));
+.dark-theme {
+  --theme-bg: oklch(var(--brown-oklch));
+  --theme-bg-subtle: oklch(var(--brown-800-oklch));
 
-  --theme-body: oklch(var(--black-oklch));
-
-  /* --theme-divider: oklch(var(--accent-oklch)); */
+  --theme-body: oklch(var(--white-oklch));
+  --theme-fg-subtle: oklch(var(--brown-500-oklch));
+  --theme-divider: oklch(var(--brown-500-oklch));
 
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
@@ -35,10 +39,14 @@
 }
 
 @theme {
-  --color-black: oklch(var(--black-oklch));
-  --color-gray-900: oklch(var(--gray-900-oklch));
-  --color-gray-200: oklch(var(--gray-200-oklch));
+  --color-brown: oklch(var(--brown-oklch));
+  --color-brown-800: oklch(var(--brown-800-oklch));
+  --color-brown-600: oklch(var(--brown-600-oklch));
+  --color-brown-500: oklch(var(--brown-500-oklch));
+  --color-brown-200: oklch(var(--brown-200-oklch));
+  --color-offwhite: oklch(var(--offwhite-oklch));
   --color-white: oklch(var(--white-oklch));
+  --color-salmon: oklch(var(--salmon-oklch));
   --color-accent: oklch(var(--accent-oklch));
 }
 
@@ -46,6 +54,7 @@
   --color-bg: var(--theme-bg);
   --color-bg-subtle: var(--theme-bg-subtle);
   --color-body: var(--theme-body);
+  --color-fg-subtle: var(--theme-fg-subtle);
   --color-divider: var(--theme-divider);
   --color-current-bg: var(--theme-current-bg);
 }

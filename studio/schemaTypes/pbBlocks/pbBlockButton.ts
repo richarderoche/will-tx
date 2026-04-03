@@ -2,7 +2,6 @@ import { CircleArrowRight } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
 const BUTTON_TYPE_OPTIONS: { title: string; value: string }[] = [
-  { title: 'Internal', value: 'sitePage' },
   { title: 'External', value: 'externalLink' },
   { title: 'File', value: 'file' },
 ]
@@ -22,12 +21,6 @@ export default defineType({
         layout: 'radio',
         direction: 'horizontal',
       },
-    }),
-    defineField({
-      title: 'Site Page',
-      name: 'sitePage',
-      type: 'navPage',
-      hidden: ({ parent }) => parent?.linkType !== 'sitePage',
     }),
     defineField({
       title: 'External Link',
@@ -73,16 +66,12 @@ export default defineType({
   preview: {
     select: {
       linkType: 'linkType',
-      sitePageTitle: 'sitePage.title',
-      pageTitle: 'sitePage.page.title',
       externalTitle: 'externalLink.title',
       externalUrl: 'externalLink.url',
       fileButtonText: 'fileLink.buttonText',
     },
     prepare({
       linkType,
-      sitePageTitle,
-      pageTitle,
       externalTitle,
       externalUrl,
       fileButtonText,
@@ -90,9 +79,7 @@ export default defineType({
       const typeLabel =
         BUTTON_TYPE_OPTIONS.find((o) => o.value === linkType)?.title ?? 'Button'
       let subtitle = ''
-      if (linkType === 'sitePage') {
-        subtitle = sitePageTitle || pageTitle || 'No page selected'
-      } else if (linkType === 'externalLink') {
+      if (linkType === 'externalLink') {
         subtitle = externalTitle || externalUrl || 'No URL'
       } else if (linkType === 'file') {
         subtitle = fileButtonText || 'No button text'

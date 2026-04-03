@@ -4,7 +4,7 @@ import { resolveHref } from '@/sanity/lib/utils'
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseURL = 'https://website.com'
+  const baseURL = 'https://www.willtherapeutics.com'
   const home = await sanityFetch({
     query: sitemapByTypeQuery,
     params: { type: 'home' },
@@ -14,12 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = await sanityFetch({
     query: sitemapByTypeQuery,
     params: { type: 'page' },
-    stega: false,
-    perspective: 'published',
-  })
-  const projects = await sanityFetch({
-    query: sitemapByTypeQuery,
-    params: { type: 'project' },
     stega: false,
     perspective: 'published',
   })
@@ -35,10 +29,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   pages.data.map(({ slug, updatedAt }) => {
     sitemap.push(smObject(baseURL, slug, 'page', 'yearly', 0.8, updatedAt))
-  })
-
-  projects.data.map(({ slug, updatedAt }) => {
-    sitemap.push(smObject(baseURL, slug, 'project', 'yearly', 0.6, updatedAt))
   })
 
   return sitemap as MetadataRoute.Sitemap
