@@ -30,6 +30,10 @@ Example: ts-size-24/40 → font-size = var(--gut) × (24÷36)
   @apply font-mono uppercase font-normal leading-110 tracking-4 ts-size-11/18 md:ts-size-11/30 lg:ts-size-13/40;
 }
 
+.ts-ol-num {
+  @apply font-mono uppercase font-normal leading-110 tracking-2 ts-size-10/18 md:ts-size-10/30 lg:ts-size-12/40;
+}
+
 /* Paragraphs */
 
 .ts-p-md {

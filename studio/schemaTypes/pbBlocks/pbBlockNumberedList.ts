@@ -1,6 +1,10 @@
 import { ListOrdered } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
-import { textColorOptions, textStyleOptions } from './pbBlockPlainText'
+import {
+  fontWeightOptions,
+  textColorOptions,
+  textStyleOptions,
+} from './pbBlockPlainText'
 
 export default defineType({
   name: 'pbBlockNumberedList',
@@ -27,6 +31,15 @@ export default defineType({
       },
     }),
     defineField({
+      title: 'Font Weight',
+      name: 'fontWeight',
+      type: 'string',
+      initialValue: 'font-normal',
+      options: {
+        list: fontWeightOptions,
+      },
+    }),
+    defineField({
       title: 'Balance Lines?',
       name: 'balanceLines',
       type: 'boolean',
@@ -47,21 +60,32 @@ export default defineType({
               rows: 3,
             }),
           ],
+          preview: {
+            select: {
+              textContent: 'textContent',
+            },
+            prepare({ textContent }) {
+              return {
+                title: textContent ? textContent : 'No Text',
+              }
+            },
+          },
         },
       ],
     }),
   ],
   preview: {
     select: {
-      textContent: 'textContent',
+      listItems: 'listItems',
       textStyle: 'textStyle',
     },
-    prepare({ textContent, textStyle }) {
+    prepare({ listItems = 0, textStyle }) {
+      const count = listItems ? listItems.length : 0
       const bodyTextSizeText =
         textStyleOptions.find((o) => o.value === textStyle)?.title ?? 'Default'
       return {
-        title: 'Text: ' + bodyTextSizeText,
-        subtitle: textContent ? textContent : 'No Text',
+        title: 'Numbered List',
+        subtitle: 'Items: ' + count,
         media: ListOrdered,
       }
     },

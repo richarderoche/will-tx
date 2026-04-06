@@ -22,7 +22,6 @@ export const columnFields = [
     name: 'blockWidths',
     type: 'object',
     options: { columns: 3, collapsible: true, collapsed: true },
-    hidden: ({ parent }: { parent: any }) => parent?.pbBlocks?.length < 2,
     fields: [
       defineField({
         title: 'Mobile',

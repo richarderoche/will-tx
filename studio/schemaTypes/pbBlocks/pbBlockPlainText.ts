@@ -17,6 +17,11 @@ export const textColorOptions = [
   { title: 'Light', value: 'text-fg-subtle' },
 ]
 
+export const fontWeightOptions = [
+  { title: 'Normal', value: 'font-normal' },
+  { title: 'Thicker', value: 'font-medium' },
+]
+
 export default defineType({
   name: 'pbBlockPlainText',
   title: 'Plain Text',

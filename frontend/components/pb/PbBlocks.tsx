@@ -11,6 +11,7 @@ import Divider from '../shared/Divider'
 import ImageBasic from '../shared/ImageBasic'
 import RichTextWrap from '../shared/RichTextWrap'
 import VideoEmbed from '../shared/VideoEmbed'
+import { BlockNumberedList } from './BlockNumberedList'
 import MarqueeBlock from './MarqueeBlock'
 import { useSanityDataAttribute } from './SanityVisualEditingContext'
 
@@ -92,6 +93,14 @@ export default function PbBlocks({
                 </div>
               )
 
+            // Numbered List Block
+            case 'pbBlockNumberedList':
+              return (
+                <div key={_key} data-sanity={blockDataSanity}>
+                  <BlockNumberedList block={block} />
+                </div>
+              )
+
             // Button Block
             case 'pbBlockButton':
               return (
@@ -148,7 +157,7 @@ export function PlainTextBlock({ block }) {
         block.balanceLines ? 'text-balance' : 'text-pretty'
       )}
     >
-      {block.textContent || ''}
+      <span className={block.fontWeight}>{block.textContent || ''}</span>
     </div>
   )
 }

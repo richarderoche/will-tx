@@ -23,7 +23,7 @@ export default function SectionPipeline({ section }: { section: PbPipeline }) {
   useGSAP(
     () => {
       if (!textContainerRef.current) return
-      gsap.set('li', { opacity: 0, scale: 0.8, x: -20 })
+      gsap.set('li', { opacity: 0, x: -20 })
       gsap.to('li', {
         scrollTrigger: {
           trigger: textContainerRef.current,
@@ -31,9 +31,8 @@ export default function SectionPipeline({ section }: { section: PbPipeline }) {
           markers: false,
         },
         opacity: 1,
-        scale: 1,
         x: 0,
-        duration: 1.5,
+        duration: 1,
         ease: 'power2.out',
         stagger: 0.12,
       })

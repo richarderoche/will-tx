@@ -1,9 +1,9 @@
-import type { PbGridSettings } from '../../frontend/sanity.types'
+import type { PbColSettings } from '../../frontend/sanity.types'
 
 //
 // SCHEMA HELPERS
 
-export function getGridSettings(gridSettings: PbGridSettings) {
+export function getGridSettings(gridSettings: PbColSettings) {
   const { size, start } = gridSettings
   if (!start || !size) {
     return ''
@@ -45,6 +45,10 @@ export const getTypeTitles = (types: string[]) => {
         return 'Button'
       case 'pbBlockMarquee':
         return 'Marquee'
+      case 'pbBlockNumberedList':
+        return 'Numbered List'
+      case 'pbBlockTeamMember':
+        return 'Team Member'
       default:
         return null
     }
