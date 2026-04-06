@@ -100,6 +100,14 @@ export default function PbBlocks({
                 </div>
               )
 
+            // Team Member Block
+            case 'pbBlockTeamMember':
+              return (
+                <div key={_key} data-sanity={blockDataSanity}>
+                  <TeamMemberBlock block={block} trueSizes={trueSizes} />
+                </div>
+              )
+
             // Divider Block
             case 'pbBlockDivider':
               return (
@@ -188,6 +196,29 @@ export function ButtonBlock({ block }) {
         />
       )}
     </>
+  )
+}
+
+export function TeamMemberBlock({ block, trueSizes }) {
+  return (
+    <div className="grid grid-cols-3 max-md:items-center md:flex md:flex-col gap-gut ">
+      <div className="corner-container col-span-1">
+        <ImageBasic
+          image={block.image as SanityImageType}
+          alt={`Portrait of ${block.name}`}
+          sizes={trueSizes}
+          ratio={0.8}
+          className="corner"
+        />
+      </div>
+      <div className="flex flex-col gap-gut-25 col-span-2 text-balance">
+        <div className="font-medium">{block.name}</div>
+        <div className="ts-p-xs font-mono -tracking-3 text-fg-subtle flex flex-col gap-[.5em]">
+          <p className="leading-120">{block.position}</p>
+          <p className="leading-120">{block.accreditation}</p>
+        </div>
+      </div>
+    </div>
   )
 }
 

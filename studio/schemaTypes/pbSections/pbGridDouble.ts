@@ -32,7 +32,7 @@ export default defineType({
       title: 'Vertical Alignment (Desktop & Tablet only)',
       name: 'yAlignment',
       type: 'string',
-      initialValue: 'items-center',
+      initialValue: 'items-start',
       hidden: ({ parent }) => parent?.showGridLines,
       options: {
         list: [

@@ -13,6 +13,7 @@ import pbBlockDivider from './pbBlocks/pbBlockDivider'
 import pbBlockImage from './pbBlocks/pbBlockImage'
 import pbBlockMarquee from './pbBlocks/pbBlockMarquee'
 import pbBlockPlainText from './pbBlocks/pbBlockPlainText'
+import pbBlockTeamMember from './pbBlocks/pbBlockTeamMember'
 import pbBlockText from './pbBlocks/pbBlockText'
 import pbBlockVideoEmbed from './pbBlocks/pbBlockVideoEmbed'
 import pbSections from './pbSections'
@@ -44,6 +45,7 @@ export const schemaTypes = [
   pbBlockDivider,
   pbBlockMarquee,
   pbBlockPlainText,
+  pbBlockTeamMember,
   pbBlockText,
   pbBlockVideoEmbed,
   pbColSettings,

@@ -49,7 +49,9 @@ export default defineType({
         ],
       },
       styles: [
-        { title: 'Normal', value: 'normal' },
+        { title: 'Paragraph', value: 'normal' },
+        { title: 'Paragraph - Light', value: 'light' },
+        { title: 'Paragraph Small', value: 'small' },
         { title: 'Heading 1', value: 'h1' },
         { title: 'Heading 2', value: 'h2' },
         { title: 'Heading 3', value: 'h3' },

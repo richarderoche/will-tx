@@ -6,6 +6,7 @@
   --brown-200-oklch: 0.8133 0.0183 81.32;
   --offwhite-oklch: 0.9726 0.0124 75.37;
   --white-oklch: 1 0 0;
+  --black-oklch: 0 0 0;
   --salmon-oklch: 0.8036 0.0489 53.52;
   --accent-oklch: 0.6937 0.1792 47.49;
 }
@@ -17,6 +18,7 @@
   --theme-body: oklch(var(--brown-oklch));
   --theme-fg-subtle: oklch(var(--brown-600-oklch));
   --theme-divider: oklch(var(--brown-600-oklch));
+  --theme-overlay: oklch(var(--white-oklch));
 
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
@@ -31,6 +33,7 @@
   --theme-body: oklch(var(--white-oklch));
   --theme-fg-subtle: oklch(var(--brown-500-oklch));
   --theme-divider: oklch(var(--brown-500-oklch));
+  --theme-overlay: oklch(var(--black-oklch));
 
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
@@ -46,6 +49,7 @@
   --color-brown-200: oklch(var(--brown-200-oklch));
   --color-offwhite: oklch(var(--offwhite-oklch));
   --color-white: oklch(var(--white-oklch));
+  --color-black: oklch(var(--black-oklch));
   --color-salmon: oklch(var(--salmon-oklch));
   --color-accent: oklch(var(--accent-oklch));
 }
@@ -56,6 +60,7 @@
   --color-body: var(--theme-body);
   --color-fg-subtle: var(--theme-fg-subtle);
   --color-divider: var(--theme-divider);
+  --color-overlay: var(--theme-overlay);
   --color-current-bg: var(--theme-current-bg);
 }
 

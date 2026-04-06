@@ -20,7 +20,7 @@ export interface NavItem {
 
 // extract pbGridMulti from the pbGridSection union for the pbBlocks query result below
 type PbGridSection = Extract<
-  NonNullable<NonNullable<PagesBySlugQueryResult>['pbSections']>[number],
+  NonNullable<NonNullable<HomePageQueryResult>['pbSections']>[number],
   { _type: 'pbGridMulti' }
 >
 export type PbBlocksQueryResult = NonNullable<

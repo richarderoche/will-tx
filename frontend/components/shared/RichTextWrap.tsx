@@ -6,13 +6,7 @@ export default function RichTextWrap({
   ...rest
 }: React.ComponentPropsWithoutRef<'div'>) {
   return (
-    <div
-      className={cn(
-        'prose prose-siteColor prose-li:my-0 prose-headings:mt-[.8em] prose-headings:first:mt-0',
-        className
-      )}
-      {...rest}
-    >
+    <div className={cn('prose prose-siteColor', className)} {...rest}>
       {children}
     </div>
   )

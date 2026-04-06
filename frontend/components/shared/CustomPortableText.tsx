@@ -15,6 +15,12 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
       normal: ({ children }) => {
         return <p>{children}</p>
       },
+      light: ({ children }) => {
+        return <p className="text-fg-subtle">{children}</p>
+      },
+      small: ({ children }) => {
+        return <p className="ts-p-sm">{children}</p>
+      },
       h1: ({ children }) => {
         return <h2 className="ts-h1 text-balance">{children}</h2>
       },

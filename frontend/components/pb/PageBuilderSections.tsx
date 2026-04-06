@@ -1,8 +1,9 @@
 'use client'
 
-import { formatHtmlId } from '@/lib/utils'
+import { cn, formatHtmlId } from '@/lib/utils'
 import { PbSections } from '@/sanity.types'
 import { PageBuilderData } from '@/types'
+import ImageBasic from '../shared/ImageBasic'
 import {
   SanityPathSegment,
   SanityVisualEditingPath,
@@ -34,7 +35,7 @@ export default function PageBuilderSections({
         const { _key, sectionSettings } = section
         const {
           backgroundImage,
-          backgroundImageOpacity,
+          backgroundImageOpacity = 50,
           colorTheme = 'light-theme',
           enableSection = true,
           marginBottom,
@@ -46,6 +47,7 @@ export default function PageBuilderSections({
         if (!enableSection) return null
 
         const sectionPath: SanityPathSegment[] = ['pbSections', { _key }]
+        const isFirst = _key === firstPbSectionKey
 
         return (
           <section
@@ -55,10 +57,32 @@ export default function PageBuilderSections({
                 : 'section-' + _key
             }
             key={_key}
-            className={colorTheme}
+            className={cn(
+              colorTheme,
+              backgroundImage && 'relative overflow-hidden'
+            )}
             data-sanity={getDataAttribute(sectionPath)}
           >
+            {backgroundImage && (
+              <ImageBasic
+                image={backgroundImage}
+                alt={''}
+                sizes="100vw"
+                priority={isFirst ? true : false}
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            )}
+            {backgroundImage && (
+              <div
+                className="absolute inset-0 bg-overlay"
+                style={{
+                  opacity: `${backgroundImageOpacity / 100}`,
+                }}
+              ></div>
+            )}
             <div
+              className="relative z-1"
               style={{
                 paddingTop: marginTop
                   ? `calc(var(--gut) * ${marginTop})`
