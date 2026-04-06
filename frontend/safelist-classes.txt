@@ -130,3 +130,4 @@ gap-gut-1000
 // Colors
 text-body
 text-accent
+text-fg-subtle

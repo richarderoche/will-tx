@@ -115,11 +115,14 @@ export default defineType({
     select: {
       sectionName: 'sectionSettings.sectionTitle',
       rowWidth: 'rowWidth',
+      anchor: 'sectionSettings.enableAnchorLink',
     },
-    prepare({ sectionName, rowWidth }) {
+    prepare({ sectionName, rowWidth, anchor }) {
       const rowWidthTitle = getRowWidthTitle(rowWidth)
       return {
-        title: sectionName ? `Multicolumn: ${sectionName}` : 'Multicolumn Grid',
+        title: sectionName
+          ? `${anchor ? '⚓ ' : ''}${sectionName}`
+          : 'Multicolumn Grid',
         subtitle: `${rowWidthTitle} Width`,
         media: IconLayoutBoardSplit,
       }

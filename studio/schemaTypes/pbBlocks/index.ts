@@ -7,6 +7,7 @@ export default defineType({
   of: [
     { title: 'Rich Text', type: 'pbBlockText' },
     { title: 'Plain Text', type: 'pbBlockPlainText' },
+    { title: 'Numbered List', type: 'pbBlockNumberedList' },
     { title: 'Image', type: 'pbBlockImage' },
     { title: 'Video Embed', type: 'pbBlockVideoEmbed' },
     { title: 'Button', type: 'pbBlockButton' },
@@ -23,6 +24,7 @@ export default defineType({
           of: [
             'pbBlockText',
             'pbBlockPlainText',
+            'pbBlockNumberedList',
             'pbBlockImage',
             'pbBlockVideoEmbed',
             'pbBlockButton',

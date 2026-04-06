@@ -1,27 +1,12 @@
-import { CaseSensitive } from 'lucide-react'
+import { ListOrdered } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
-
-export const textStyleOptions = [
-  { title: 'H1', value: 'ts-h1' },
-  { title: 'H2', value: 'ts-h2' },
-  { title: 'H3', value: 'ts-h3' },
-  { title: 'H4', value: 'ts-h4' },
-  { title: 'Body Medium', value: 'ts-p-md' },
-  { title: 'Body Small', value: 'ts-p-sm' },
-  { title: 'Label', value: 'ts-h5' },
-]
-
-// If adding options, add classes to frontend/safelist-classes.txt
-export const textColorOptions = [
-  { title: 'Normal', value: 'text-body' },
-  { title: 'Light', value: 'text-fg-subtle' },
-]
+import { textColorOptions, textStyleOptions } from './pbBlockPlainText'
 
 export default defineType({
-  name: 'pbBlockPlainText',
-  title: 'Plain Text',
+  name: 'pbBlockNumberedList',
+  title: 'Numbered List',
   type: 'object',
-  icon: CaseSensitive,
+  icon: ListOrdered,
   fields: [
     defineField({
       title: 'Text Style',
@@ -48,10 +33,22 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
-      name: 'textContent',
-      title: 'Text',
-      type: 'text',
-      rows: 4,
+      name: 'listItems',
+      title: 'List Items',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'textContent',
+              title: 'Text',
+              type: 'text',
+              rows: 3,
+            }),
+          ],
+        },
+      ],
     }),
   ],
   preview: {
@@ -65,7 +62,7 @@ export default defineType({
       return {
         title: 'Text: ' + bodyTextSizeText,
         subtitle: textContent ? textContent : 'No Text',
-        media: CaseSensitive,
+        media: ListOrdered,
       }
     },
   },

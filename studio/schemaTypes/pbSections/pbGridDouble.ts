@@ -57,11 +57,14 @@ export default defineType({
     select: {
       sectionName: 'sectionSettings.sectionTitle',
       rowWidth: 'rowWidth',
+      anchor: 'sectionSettings.enableAnchorLink',
     },
-    prepare({ sectionName, rowWidth }) {
+    prepare({ sectionName, rowWidth, anchor }) {
       const rowWidthTitle = getRowWidthTitle(rowWidth)
       return {
-        title: sectionName ? `Two Column: ${sectionName}` : 'Two Column Grid',
+        title: sectionName
+          ? `${anchor ? '⚓ ' : ''}${sectionName}`
+          : 'Two Column Grid',
         subtitle: `${rowWidthTitle} Width`,
         media: IconLayoutColumns,
       }

@@ -1,6 +1,5 @@
 import '@/app/globals.css'
 import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
 import GlobalScripts from '@/components/shared/GlobalScripts'
 import { GSAP } from '@/components/shared/GSAP'
 import { Lenis } from '@/components/shared/Lenis'
@@ -102,7 +101,7 @@ export default async function RootLayout({
         <Lenis />
         <GSAP />
         <div className="flex min-h-screen flex-col justify-start ts-p-md">
-          <Navbar />
+          {/* <Navbar /> */}
           <main className="grow" id="main-content">
             {children}
           </main>

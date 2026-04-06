@@ -12,6 +12,7 @@ import {
 import SectionGridDouble from './SectionGridDouble'
 import SectionGridMulti from './SectionGridMulti'
 import SectionGridSingle from './SectionGridSingle'
+import SectionPipeline from './SectionPipeline'
 
 export interface PageBuilderContentProps {
   data: PageBuilderData
@@ -101,6 +102,9 @@ export default function PageBuilderSections({
                 )}
                 {section._type === 'pbGridDouble' && (
                   <SectionGridDouble section={section} sectionKey={_key} />
+                )}
+                {section._type === 'pbPipeline' && (
+                  <SectionPipeline section={section} />
                 )}
               </SanityVisualEditingPath>
             </div>
