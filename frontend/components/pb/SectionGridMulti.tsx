@@ -1,5 +1,5 @@
 import { getGridClasses, getOuterSettings } from '@/lib/utils'
-import { PbGridMulti } from '@/sanity.types'
+import { PbGridMulti, PbSections } from '@/sanity.types'
 
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth from '../shared/SiteWidth'
@@ -8,6 +8,7 @@ import {
   SanityVisualEditingPath,
   useSanityDataAttribute,
 } from './SanityVisualEditingContext'
+import SectionCard from './SectionCard'
 
 export default function SectionGridMulti({
   section,
@@ -23,27 +24,28 @@ export default function SectionGridMulti({
   // Prep attributes
   const outerSettings = getOuterSettings(rowWidth)
   const outerClasses = outerSettings ? getGridClasses(outerSettings) : ''
-  const looseColSpacing = rowWidth > 8 && columns.length < 3
 
   return (
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SiteGrid yGaps={true} looseColSpacing={false}>
-            {columns.map((col) => (
-              <SanityVisualEditingPath
-                key={col._key}
-                path={[...sectionPath, 'columns', { _key: col._key }]}
-              >
-                <GridCol
-                  col={col}
-                  outerSettings={outerSettings}
-                  cardMode={col.cardMode}
-                  blockWidths={col.blockWidths}
-                />
-              </SanityVisualEditingPath>
-            ))}
-          </SiteGrid>
+          <SectionCard section={section as NonNullable<PbSections>[number]}>
+            <SiteGrid yGaps={true} looseColSpacing={false}>
+              {columns.map((col) => (
+                <SanityVisualEditingPath
+                  key={col._key}
+                  path={[...sectionPath, 'columns', { _key: col._key }]}
+                >
+                  <GridCol
+                    col={col}
+                    outerSettings={outerSettings}
+                    cardMode={col.cardMode}
+                    blockWidths={col.blockWidths}
+                  />
+                </SanityVisualEditingPath>
+              ))}
+            </SiteGrid>
+          </SectionCard>
         </div>
       </SiteGrid>
     </SiteWidth>

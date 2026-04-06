@@ -1,9 +1,10 @@
 import { getGridClasses, getOuterSettings } from '@/lib/utils'
-import { PbGridSingle } from '@/sanity.types'
+import { PbGridSingle, PbSections } from '@/sanity.types'
 
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth from '../shared/SiteWidth'
 import GridCol from './GridCol'
+import SectionCard from './SectionCard'
 
 export default function SectionGridSingle({
   section,
@@ -26,16 +27,18 @@ export default function SectionGridSingle({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <GridCol
-            col={{
-              _key: sectionKey,
-              pbBlocks,
-              revealEffect,
-              spaceBetweenBlocks,
-            }}
-            outerSettings={outerSettings}
-            cardMode={cardMode}
-          />
+          <SectionCard section={section as NonNullable<PbSections>[number]}>
+            <GridCol
+              col={{
+                _key: sectionKey,
+                pbBlocks,
+                revealEffect,
+                spaceBetweenBlocks,
+              }}
+              outerSettings={outerSettings}
+              cardMode={cardMode}
+            />
+          </SectionCard>
         </div>
       </SiteGrid>
     </SiteWidth>

@@ -1,9 +1,10 @@
 import { getGridClasses, getOuterSettings } from '@/lib/utils'
-import { PbColSettings, PbGridDouble } from '@/sanity.types'
+import { PbColSettings, PbGridDouble, PbSections } from '@/sanity.types'
 
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth from '../shared/SiteWidth'
 import GridCol from './GridCol'
+import SectionCard from './SectionCard'
 
 export default function SectionGridDouble({
   section,
@@ -60,38 +61,40 @@ export default function SectionGridDouble({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SiteGrid
-            yGaps={true}
-            looseColSpacing={false}
-            yAlignment={yAlignment}
-          >
-            {columnOne && columnOneBlocks.length > 0 && (
-              <GridCol
-                col={{
-                  _key: sectionKey + 'columnOne',
-                  pbBlocks: columnOneBlocks,
-                  revealEffect: columnOne.revealEffect,
-                  spaceBetweenBlocks: columnOne.spaceBetweenBlocks,
-                  columnSettings: columnOneSettings,
-                }}
-                outerSettings={outerSettings}
-                cardMode={columnOne.cardMode}
-              />
-            )}
-            {columnTwo && columnTwoBlocks.length > 0 && (
-              <GridCol
-                col={{
-                  _key: sectionKey + 'columnTwo',
-                  pbBlocks: columnTwoBlocks,
-                  revealEffect: columnTwo.revealEffect,
-                  spaceBetweenBlocks: columnTwo.spaceBetweenBlocks,
-                  columnSettings: columnTwoSettings,
-                }}
-                outerSettings={outerSettings}
-                cardMode={columnTwo.cardMode}
-              />
-            )}
-          </SiteGrid>
+          <SectionCard section={section as NonNullable<PbSections>[number]}>
+            <SiteGrid
+              yGaps={true}
+              looseColSpacing={false}
+              yAlignment={yAlignment}
+            >
+              {columnOne && columnOneBlocks.length > 0 && (
+                <GridCol
+                  col={{
+                    _key: sectionKey + 'columnOne',
+                    pbBlocks: columnOneBlocks,
+                    revealEffect: columnOne.revealEffect,
+                    spaceBetweenBlocks: columnOne.spaceBetweenBlocks,
+                    columnSettings: columnOneSettings,
+                  }}
+                  outerSettings={outerSettings}
+                  cardMode={columnOne.cardMode}
+                />
+              )}
+              {columnTwo && columnTwoBlocks.length > 0 && (
+                <GridCol
+                  col={{
+                    _key: sectionKey + 'columnTwo',
+                    pbBlocks: columnTwoBlocks,
+                    revealEffect: columnTwo.revealEffect,
+                    spaceBetweenBlocks: columnTwo.spaceBetweenBlocks,
+                    columnSettings: columnTwoSettings,
+                  }}
+                  outerSettings={outerSettings}
+                  cardMode={columnTwo.cardMode}
+                />
+              )}
+            </SiteGrid>
+          </SectionCard>
         </div>
       </SiteGrid>
     </SiteWidth>

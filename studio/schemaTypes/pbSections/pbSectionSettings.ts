@@ -32,7 +32,8 @@ export default defineType({
     }),
     defineField({
       title: 'Enable Anchor Link',
-      description: 'Enable if you want an anchor link to this section in the main navigation. Must have a section title above.',
+      description:
+        'Enable if you want an anchor link to this section in the main navigation. Must have a section title above.',
       name: 'enableAnchorLink',
       type: 'boolean',
       initialValue: false,
@@ -70,6 +71,7 @@ export default defineType({
     }),
     defineField({
       title: 'Background Image',
+      description: 'Edge-to-edge backdrop to entire section.',
       name: 'backgroundImage',
       type: 'image',
     }),
@@ -80,6 +82,23 @@ export default defineType({
       initialValue: 50,
       validation: (Rule) => Rule.required().min(1).max(100),
       hidden: ({ parent }) => !parent?.backgroundImage,
+    }),
+    defineField({
+      title: 'Card Mode',
+      name: 'cardMode',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      title: 'Card Banner Image',
+      name: 'cardBannerImage',
+      type: 'image',
+      options: {
+        hotspot: {
+          previews: [{ title: '5:2', aspectRatio: 2.5 }],
+        },
+      },
+      hidden: ({ parent }) => !parent?.cardMode,
     }),
   ],
 })

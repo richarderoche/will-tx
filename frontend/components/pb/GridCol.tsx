@@ -64,7 +64,7 @@ export default function GridCol({
 
   return (
     <Revealer
-      className={cn(colClasses, yClasses, 'corner-container lined-grid-cell')}
+      className={cn(colClasses, yClasses, 'corner-container')}
       data-sanity={getDataAttribute()}
       direction={revealEffect}
     >
