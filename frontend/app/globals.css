@@ -50,10 +50,8 @@
 
   /* Use .corner-container > .corner or .corner-sm
   for container-relative rounded corners */
-  --radius-xs: 0.4rem;
-  --radius-sm: 0.5rem;
-  --radius-md: 1rem;
-  --radius-lg: 2rem;
+  --radius-sm: 0.5625rem;
+  --radius-lg: 0.9375rem;
 }
 
 body {
@@ -74,5 +72,13 @@ for container-relative rounded corners
 }
 
 .corner {
-  @apply overflow-hidden rounded-xs @sm/corner:rounded-sm @md/corner:rounded-md @lg/corner:rounded-lg @xl/corner:rounded-lg;
+  @apply overflow-hidden rounded-sm @2xl/corner:rounded-lg;
+}
+
+.card-container {
+  @apply @container [container-name:card_corner];
+}
+
+.card-padding {
+  @apply p-gut @3xl/card:p-gut-150 @5xl/card:p-gut-200;
 }

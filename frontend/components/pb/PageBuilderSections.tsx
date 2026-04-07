@@ -95,16 +95,24 @@ export default function PageBuilderSections({
             >
               <SanityVisualEditingPath path={[...sectionPath]}>
                 {section._type === 'pbGridMulti' && (
-                  <SectionGridMulti section={section} />
+                  <SectionGridMulti section={section} isFirst={isFirst} />
                 )}
                 {section._type === 'pbGridSingle' && (
-                  <SectionGridSingle section={section} sectionKey={_key} />
+                  <SectionGridSingle
+                    section={section}
+                    sectionKey={_key}
+                    isFirst={isFirst}
+                  />
                 )}
                 {section._type === 'pbGridDouble' && (
-                  <SectionGridDouble section={section} sectionKey={_key} />
+                  <SectionGridDouble
+                    section={section}
+                    sectionKey={_key}
+                    isFirst={isFirst}
+                  />
                 )}
                 {section._type === 'pbPipeline' && (
-                  <SectionPipeline section={section} />
+                  <SectionPipeline section={section} isFirst={isFirst} />
                 )}
               </SanityVisualEditingPath>
             </div>

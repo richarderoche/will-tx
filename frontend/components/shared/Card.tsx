@@ -8,8 +8,8 @@ export default function Card({
   bgColorClass?: string
 }) {
   return (
-    <div className="corner-container">
-      <div className={cn('corner p-gut', bgColorClass)}>{children}</div>
+    <div className="card-container">
+      <div className={cn('corner card-padding', bgColorClass)}>{children}</div>
     </div>
   )
 }

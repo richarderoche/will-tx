@@ -100,5 +100,12 @@ export default defineType({
       },
       hidden: ({ parent }) => !parent?.cardMode,
     }),
+    defineField({
+      title: 'Card Banner Image Alt',
+      name: 'cardBannerImageAlt',
+      type: 'string',
+      initialValue: '',
+      hidden: ({ parent }) => !parent?.cardBannerImage,
+    }),
   ],
 })

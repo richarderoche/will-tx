@@ -9,9 +9,11 @@ import SectionCard from './SectionCard'
 export default function SectionGridSingle({
   section,
   sectionKey,
+  isFirst,
 }: {
   section: PbGridSingle
   sectionKey: string
+  isFirst: boolean
 }) {
   const { rowWidth, pbBlocks, cardMode, revealEffect, spaceBetweenBlocks } =
     section
@@ -27,7 +29,10 @@ export default function SectionGridSingle({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SectionCard section={section as NonNullable<PbSections>[number]}>
+          <SectionCard
+            section={section as NonNullable<PbSections>[number]}
+            isFirst={isFirst}
+          >
             <GridCol
               col={{
                 _key: sectionKey,

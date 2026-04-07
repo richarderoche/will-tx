@@ -23,6 +23,7 @@
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
     --theme-current-bg: var(--theme-bg-subtle);
+    --theme-fg-subtle: oklch(var(--brown-800-oklch));
   }
 }
 
@@ -38,6 +39,7 @@
   --theme-current-bg: var(--theme-bg);
   .bg-bg-subtle {
     --theme-current-bg: var(--theme-bg-subtle);
+    --theme-fg-subtle: oklch(var(--brown-200-oklch));
   }
 }
 

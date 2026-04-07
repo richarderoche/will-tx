@@ -12,8 +12,10 @@ import SectionCard from './SectionCard'
 
 export default function SectionGridMulti({
   section,
+  isFirst,
 }: {
   section: PbGridMulti
+  isFirst: boolean
 }) {
   const { rowWidth = 12, columns } = section
   const { path: sectionPath } = useSanityDataAttribute()
@@ -29,7 +31,10 @@ export default function SectionGridMulti({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SectionCard section={section as NonNullable<PbSections>[number]}>
+          <SectionCard
+            section={section as NonNullable<PbSections>[number]}
+            isFirst={isFirst}
+          >
             <SiteGrid yGaps={true} looseColSpacing={false}>
               {columns.map((col) => (
                 <SanityVisualEditingPath

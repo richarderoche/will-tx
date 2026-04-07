@@ -1,7 +1,7 @@
 'use client'
 
 import { cn, formatHtmlId, getGridClasses, getOuterSettings } from '@/lib/utils'
-import { BigCircle, PbPipeline, SmallCircle } from '@/sanity.types'
+import { BigCircle, PbPipeline, PbSections, SmallCircle } from '@/sanity.types'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
@@ -10,8 +10,15 @@ import PipelineHorizontal from '../icons/PipelineHorizontal'
 import PipelineVertical from '../icons/PipelineVertical'
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth from '../shared/SiteWidth'
+import SectionCard from './SectionCard'
 
-export default function SectionPipeline({ section }: { section: PbPipeline }) {
+export default function SectionPipeline({
+  section,
+  isFirst,
+}: {
+  section: PbPipeline
+  isFirst: boolean
+}) {
   const { rowWidth, smallCircle, bigCircle } = section
   const textContainerRef = useRef<HTMLDivElement>(null)
   // Prep attributes
@@ -44,25 +51,30 @@ export default function SectionPipeline({ section }: { section: PbPipeline }) {
     <SiteWidth>
       <SiteGrid>
         <div className={cn(outerClasses, 'relative')}>
-          <PipelineHorizontal className="hidden md:block" />
-          <PipelineVertical className="md:hidden" />
-          <div
-            ref={textContainerRef}
-            className="absolute inset-0 flex justify-between max-md:flex-col items-center md:items-end"
+          <SectionCard
+            section={section as NonNullable<PbSections>[number]}
+            isFirst={isFirst}
           >
-            {smallCircle && (
-              <PipelineCircle
-                data={smallCircle}
-                className="w-250/469 md:w-250/888"
-              />
-            )}
-            {bigCircle && (
-              <PipelineCircle
-                data={bigCircle}
-                className="w-full md:w-469/888"
-              />
-            )}
-          </div>
+            <PipelineHorizontal className="hidden md:block" />
+            <PipelineVertical className="md:hidden" />
+            <div
+              ref={textContainerRef}
+              className="absolute inset-0 flex justify-between max-md:flex-col items-center md:items-end"
+            >
+              {smallCircle && (
+                <PipelineCircle
+                  data={smallCircle}
+                  className="w-250/469 md:w-250/888"
+                />
+              )}
+              {bigCircle && (
+                <PipelineCircle
+                  data={bigCircle}
+                  className="w-full md:w-469/888"
+                />
+              )}
+            </div>
+          </SectionCard>
         </div>
       </SiteGrid>
     </SiteWidth>

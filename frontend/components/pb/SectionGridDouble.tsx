@@ -9,9 +9,11 @@ import SectionCard from './SectionCard'
 export default function SectionGridDouble({
   section,
   sectionKey,
+  isFirst,
 }: {
   section: PbGridDouble
   sectionKey: string
+  isFirst: boolean
 }) {
   const {
     rowWidth,
@@ -61,7 +63,10 @@ export default function SectionGridDouble({
     <SiteWidth>
       <SiteGrid>
         <div className={outerClasses}>
-          <SectionCard section={section as NonNullable<PbSections>[number]}>
+          <SectionCard
+            section={section as NonNullable<PbSections>[number]}
+            isFirst={isFirst}
+          >
             <SiteGrid
               yGaps={true}
               looseColSpacing={false}
