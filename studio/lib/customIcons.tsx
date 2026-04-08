@@ -38,7 +38,7 @@ export const marqueeIcon = () => {
   )
 }
 
-export const IconSpotlight = () => {
+export const IconHero = () => {
   return (
     <svg
       width="24"
@@ -51,15 +51,15 @@ export const IconSpotlight = () => {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M22 13.4316L21.2931 12.5067C21.1714 12.3461 21.0266 12.2187 20.8671 12.1317C20.7076 12.0448 20.5365 12 20.3636 12C20.1908 12 20.0197 12.0448 19.8602 12.1317C19.7007 12.2187 19.5559 12.3461 19.4342 12.5067L16 17" />
-      <path
-        d="M15.5 11C15.7761 11 16 10.7761 16 10.5C16 10.2239 15.7761 10 15.5 10C15.2239 10 15 10.2239 15 10.5C15 10.7761 15.2239 11 15.5 11Z"
-        fill="currentColor"
-      />
-      <rect x="12" y="7" width="10" height="10" rx="2" />
-      <line x1="2" y1="9" x2="8" y2="9" />
-      <line x1="2" y1="12" x2="8" y2="12" />
-      <line x1="2" y1="15" x2="4" y2="15" />
+      <path d="M20 20L20 17" />
+      <path d="M20 7L20 4" />
+      <path d="M20 13.5L20 10.5" />
+      <path d="M16 20L16 17" />
+      <path d="M16 7L16 4" />
+      <path d="M16 13.5L16 10.5" />
+      <path d="M12 20L12 17" />
+      <path d="M12 7L12 4" />
+      <path d="M12 13.5L12 10.5" />
     </svg>
   )
 }

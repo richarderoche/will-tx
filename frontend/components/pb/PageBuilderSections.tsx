@@ -33,17 +33,22 @@ export default function PageBuilderSections({
   return (
     <div className="flex flex-col">
       {pbSections.map((section) => {
-        const { _key, sectionSettings } = section
+        const { _key, _type } = section
+        const {
+          colorTheme = 'light-theme',
+          enableSection = true,
+          enableAnchorLink,
+          sectionTitle,
+        } = _type === 'pbHero'
+          ? section.sectionSettingsSlim || {}
+          : section.sectionSettings || {}
+
         const {
           backgroundImage,
           backgroundImageOpacity = 50,
-          colorTheme = 'light-theme',
-          enableSection = true,
           marginBottom,
           marginTop,
-          enableAnchorLink,
-          sectionTitle,
-        } = sectionSettings || {}
+        } = _type !== 'pbHero' ? section.sectionSettings || {} : {}
 
         if (!enableSection) return null
 
@@ -78,7 +83,7 @@ export default function PageBuilderSections({
               <div
                 className="absolute inset-0 bg-overlay"
                 style={{
-                  opacity: `${backgroundImageOpacity / 100}`,
+                  opacity: `${(100 - backgroundImageOpacity) / 100}`,
                 }}
               ></div>
             )}

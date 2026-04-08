@@ -92,6 +92,12 @@ const pb = `
         }
       }
     },
+    _type == "pbHero" => {
+      ...,
+      pbBlocks[]{
+        ${pbBlocks}
+      }
+    },
   }
 `
 

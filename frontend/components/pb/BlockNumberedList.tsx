@@ -13,7 +13,7 @@ export function BlockNumberedList({ block }) {
   useGSAP(
     () => {
       if (!olRef.current) return
-      gsap.set('li', { opacity: 0, x: -20 })
+      gsap.set('li', { opacity: 0, y: 30 })
       gsap.to('li', {
         scrollTrigger: {
           trigger: olRef.current,
@@ -21,7 +21,7 @@ export function BlockNumberedList({ block }) {
           markers: false,
         },
         opacity: 1,
-        x: 0,
+        y: 0,
         duration: 1,
         ease: 'power2.out',
         stagger: 0.12,

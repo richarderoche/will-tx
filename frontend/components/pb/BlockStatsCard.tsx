@@ -70,9 +70,9 @@ export function BlockStatsCard({ block }: { block: PbBlockStatsCard }) {
       bgColorClass={block.bgColor}
       style={{ visibility: 'hidden' }}
     >
-      {title && <h2 className="line-in ts-h2 mb-gut-700">{title}</h2>}
+      {title && <h2 className="line-in ts-h2 mb-gut-800">{title}</h2>}
       {hasStats && (
-        <ul className="flex flex-col gap-em mb-gut-25">
+        <ul className="flex flex-col gap-[1.25em] mb-gut-25">
           {stats.map((stat) => (
             <li
               className="line-in flex items-baseline justify-between gap-gut-25 border-b border-divider pb-gut-25"
