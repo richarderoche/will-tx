@@ -12,6 +12,7 @@ import {
 import SectionGridDouble from './SectionGridDouble'
 import SectionGridMulti from './SectionGridMulti'
 import SectionGridSingle from './SectionGridSingle'
+import SectionHero from './SectionHero'
 import SectionPipeline from './SectionPipeline'
 
 export interface PageBuilderContentProps {
@@ -35,6 +36,7 @@ export default function PageBuilderSections({
       {pbSections.map((section) => {
         const { _key, _type } = section
         const {
+          backgroundImage,
           colorTheme = 'light-theme',
           enableSection = true,
           enableAnchorLink,
@@ -44,8 +46,7 @@ export default function PageBuilderSections({
           : section.sectionSettings || {}
 
         const {
-          backgroundImage,
-          backgroundImageOpacity = 50,
+          backgroundImageOpacity = 100,
           marginBottom,
           marginTop,
         } = _type !== 'pbHero' ? section.sectionSettings || {} : {}
@@ -79,7 +80,7 @@ export default function PageBuilderSections({
                 className="absolute inset-0 w-full h-full object-cover"
               />
             )}
-            {backgroundImage && (
+            {backgroundImage && backgroundImageOpacity < 100 && (
               <div
                 className="absolute inset-0 bg-overlay"
                 style={{
@@ -118,6 +119,13 @@ export default function PageBuilderSections({
                 )}
                 {section._type === 'pbPipeline' && (
                   <SectionPipeline section={section} isFirst={isFirst} />
+                )}
+                {section._type === 'pbHero' && (
+                  <SectionHero
+                    section={section}
+                    sectionKey={_key}
+                    isFirst={isFirst}
+                  />
                 )}
               </SanityVisualEditingPath>
             </div>

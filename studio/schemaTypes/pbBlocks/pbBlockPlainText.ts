@@ -14,7 +14,8 @@ export const textStyleOptions = [
 // If adding options, add classes to frontend/safelist-classes.txt
 export const textColorOptions = [
   { title: 'Normal', value: 'text-body' },
-  { title: 'Light', value: 'text-fg-subtle' },
+  { title: 'Subtle', value: 'text-fg-subtle' },
+  { title: 'Subtle Inverse', value: 'text-bg-subtle' },
 ]
 
 export const fontWeightOptions = [

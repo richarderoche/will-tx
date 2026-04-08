@@ -1,7 +1,6 @@
 import { CogIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 import { IconHero } from '../../lib/customIcons'
-import { columnFields } from './column'
 
 export default defineType({
   title: 'Hero Section',
@@ -52,14 +51,18 @@ export default defineType({
           },
           initialValue: 'light-theme',
         }),
+        defineField({
+          title: 'Background Image',
+          name: 'backgroundImage',
+          type: 'image',
+        }),
       ],
     }),
     defineField({
-      title: 'Background Image',
-      name: 'backgroundImage',
-      type: 'image',
+      title: 'Left Column Content',
+      name: 'pbBlocks',
+      type: 'pbBlocks',
     }),
-    ...columnFields,
     defineField({
       title: 'Image Grid (Add exactly 4 or 9 images)',
       name: 'imageGrid',

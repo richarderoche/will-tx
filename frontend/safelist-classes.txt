@@ -155,5 +155,6 @@ gap-gut-1000
 text-body
 text-accent
 text-fg-subtle
+text-bg-subtle
 bg-bg-subtle
 bg-salmon

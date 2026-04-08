@@ -8,13 +8,6 @@
   text-underline-offset: 0.15em;
 }
 
-@utility nice-underline-stealth {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.125em;
-  text-decoration-color: transparent;
-}
-
 @utility center-caps {
   position: relative;
   bottom: -0.0625em;

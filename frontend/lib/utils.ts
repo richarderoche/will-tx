@@ -118,14 +118,17 @@ export function getTrueSizes(outer: Size, inner?: Size) {
 
 export function getFirstSectionInfo(data: PageBuilderData) {
   if (!data) return { firstIsHero: false, firstPbSectionKey: '' }
-  const firstPbSection = data?.pbSections?.find(
-    (section) => section.sectionSettings?.enableSection !== false
-  )
+  const firstPbSection = data?.pbSections?.find((section) => {
+    const { enableSection } =
+      section._type === 'pbHero'
+        ? section.sectionSettingsSlim || {}
+        : section.sectionSettings || {}
+    if (!enableSection) return null
+    return section
+  })
   const firstPbSectionKey = firstPbSection?._key
   const firstPbSectionType = firstPbSection?._type
-  const firstIsHero =
-    firstPbSectionType === 'pbTitleSection' &&
-    firstPbSection?.titleMode === 'hero'
+  const firstIsHero = firstPbSectionType === 'pbHero'
   return { firstIsHero, firstPbSectionKey }
 }
 

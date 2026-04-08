@@ -2,7 +2,7 @@ import { CircleArrowRight } from 'lucide-react'
 import { defineField, defineType } from 'sanity'
 
 const BUTTON_TYPE_OPTIONS: { title: string; value: string }[] = [
-  { title: 'External', value: 'externalLink' },
+  { title: 'URL', value: 'externalLink' },
   { title: 'File', value: 'file' },
 ]
 
@@ -23,7 +23,7 @@ export default defineType({
       },
     }),
     defineField({
-      title: 'External Link',
+      title: 'URL',
       name: 'externalLink',
       type: 'navExternal',
       hidden: ({ parent }) => parent?.linkType !== 'externalLink',
@@ -70,12 +70,7 @@ export default defineType({
       externalUrl: 'externalLink.url',
       fileButtonText: 'fileLink.buttonText',
     },
-    prepare({
-      linkType,
-      externalTitle,
-      externalUrl,
-      fileButtonText,
-    }) {
+    prepare({ linkType, externalTitle, externalUrl, fileButtonText }) {
       const typeLabel =
         BUTTON_TYPE_OPTIONS.find((o) => o.value === linkType)?.title ?? 'Button'
       let subtitle = ''

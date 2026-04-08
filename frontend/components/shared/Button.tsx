@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { resolveHref } from '@/sanity/lib/utils'
 import { NavItem } from '@/types'
+import IconCaret from '../icons/IconCaret'
 
 interface ButtonProps {
   text?: string
@@ -14,7 +15,7 @@ interface ButtonProps {
 }
 
 export default function Button(props: ButtonProps) {
-  const { text, path, navItem, style = 'main', className, download } = props
+  const { text, path, navItem, className, download } = props
   let href: string | undefined = ''
   let buttonText: string | undefined = ''
 
@@ -36,17 +37,14 @@ export default function Button(props: ButtonProps) {
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className={cn(
-        'border rounded-full flex w-fit items-center transition-colors',
-        style === 'main'
-          ? 'border-accent bg-accent hover:border-black hover:bg-black hover:text-accent'
-          : style === 'alt'
-            ? 'border-black hover:border-accent hover:bg-accent'
-            : 'hover:bg-accent',
+        'rounded-full w-fit flex items-center h-btn relative group ts-p-xs',
         className
       )}
       download={download}
     >
-      <span className="leading-none whitespace-nowrap ts-h5 py-[.4em] px-[.8em] center-caps">
+      <div className="absolute left-0 top-0 h-btn w-btn group-hover:w-full rounded-full bg-accent -z-1 transition-all duration-200 ease-out"></div>
+      <IconCaret className="size-btn group-hover:opacity-35 group-hover:translate-x-[.5em] transition-all duration-200 ease-out" />
+      <span className=" leading-none! nice-underline group-hover:decoration-transparent whitespace-nowrap pl-[.5em] pr-[1.2em] relative bottom-[.05em] transition-all duration-200">
         {buttonText}
       </span>
     </Link>
