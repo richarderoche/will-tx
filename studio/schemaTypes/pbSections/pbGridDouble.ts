@@ -8,6 +8,13 @@ export default defineType({
   name: 'pbGridDouble',
   type: 'object',
   icon: IconLayoutColumns,
+  fieldsets: [
+    {
+      title: 'Desktop & Tablet',
+      name: 'desktopTablet',
+      options: { columns: 2 },
+    },
+  ],
   fields: [
     defineField({
       title: 'Section Settings',
@@ -16,10 +23,11 @@ export default defineType({
     }),
     defineField(rowWidthField),
     defineField({
-      title: 'Column Proportions (Desktop & Tablet only)',
+      title: 'Column Proportions',
       name: 'columnProportions',
       type: 'string',
       initialValue: '50-50',
+      fieldset: 'desktopTablet',
       options: {
         list: [
           { title: '50-50', value: '50-50' },
@@ -29,10 +37,11 @@ export default defineType({
       },
     }),
     defineField({
-      title: 'Vertical Alignment (Desktop & Tablet only)',
+      title: 'Vertical Alignment',
       name: 'yAlignment',
       type: 'string',
       initialValue: 'items-start',
+      fieldset: 'desktopTablet',
       hidden: ({ parent }) => parent?.showGridLines,
       options: {
         list: [

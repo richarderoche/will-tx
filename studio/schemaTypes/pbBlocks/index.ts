@@ -12,6 +12,7 @@ export default defineType({
     { title: 'Video Embed', type: 'pbBlockVideoEmbed' },
     { title: 'Button', type: 'pbBlockButton' },
     { title: 'Divider/Spacer', type: 'pbBlockDivider' },
+    { title: 'Stats Card', type: 'pbBlockStatsCard' },
     { title: 'Team Member', type: 'pbBlockTeamMember' },
     { title: 'Scrolling Marquee', type: 'pbBlockMarquee' },
   ],
@@ -34,7 +35,7 @@ export default defineType({
         {
           name: 'specialty',
           title: 'Specialty',
-          of: ['pbBlockTeamMember', 'pbBlockMarquee'],
+          of: ['pbBlockStatsCard', 'pbBlockTeamMember', 'pbBlockMarquee'],
         },
       ],
     },

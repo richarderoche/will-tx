@@ -12,6 +12,7 @@ import ImageBasic from '../shared/ImageBasic'
 import RichTextWrap from '../shared/RichTextWrap'
 import VideoEmbed from '../shared/VideoEmbed'
 import { BlockNumberedList } from './BlockNumberedList'
+import { BlockStatsCard } from './BlockStatsCard'
 import MarqueeBlock from './MarqueeBlock'
 import { useSanityDataAttribute } from './SanityVisualEditingContext'
 
@@ -98,6 +99,14 @@ export default function PbBlocks({
               return (
                 <div key={_key} data-sanity={blockDataSanity}>
                   <BlockNumberedList block={block} />
+                </div>
+              )
+
+            // Stats Card Block
+            case 'pbBlockStatsCard':
+              return (
+                <div key={_key} data-sanity={blockDataSanity}>
+                  <BlockStatsCard block={block} />
                 </div>
               )
 

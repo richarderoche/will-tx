@@ -14,6 +14,7 @@ import pbBlockImage from './pbBlocks/pbBlockImage'
 import pbBlockMarquee from './pbBlocks/pbBlockMarquee'
 import pbBlockNumberedList from './pbBlocks/pbBlockNumberedList'
 import pbBlockPlainText from './pbBlocks/pbBlockPlainText'
+import pbBlockStatsCard from './pbBlocks/pbBlockStatsCard'
 import pbBlockTeamMember from './pbBlocks/pbBlockTeamMember'
 import pbBlockText from './pbBlocks/pbBlockText'
 import pbBlockVideoEmbed from './pbBlocks/pbBlockVideoEmbed'
@@ -48,6 +49,7 @@ export const schemaTypes = [
   pbBlockMarquee,
   pbBlockNumberedList,
   pbBlockPlainText,
+  pbBlockStatsCard,
   pbBlockTeamMember,
   pbBlockText,
   pbBlockVideoEmbed,

@@ -14,14 +14,13 @@ export default defineType({
   ],
   options: {
     collapsible: true,
-    collapsed: false,
+    collapsed: true,
   },
   fields: [
     defineField({
-      title: 'Enable Section',
+      title: 'Section Visibility',
       name: 'enableSection',
       type: 'boolean',
-      description: 'Disable to hide this section without deleting it',
       initialValue: true,
     }),
     defineField({
@@ -84,7 +83,7 @@ export default defineType({
       hidden: ({ parent }) => !parent?.backgroundImage,
     }),
     defineField({
-      title: 'Card Mode',
+      title: 'Section Card Mode',
       name: 'cardMode',
       type: 'boolean',
       initialValue: false,

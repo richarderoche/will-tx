@@ -3,17 +3,11 @@ import { revealEffectField, spaceBetweenBlocksField } from '../fields'
 
 export const columnFields = [
   defineField({
-    title: 'Card Mode',
-    name: 'cardMode',
-    type: 'boolean',
-    initialValue: false,
-  }),
-  defineField(revealEffectField),
-  defineField({
     title: 'Blocks',
     name: 'pbBlocks',
     type: 'pbBlocks',
   }),
+  defineField(revealEffectField),
   defineField(spaceBetweenBlocksField),
   defineField({
     title: 'Block Widths (Change sparingly)',
@@ -66,6 +60,12 @@ export const columnFields = [
         },
       }),
     ],
+  }),
+  defineField({
+    title: 'Column Card Mode',
+    name: 'cardMode',
+    type: 'boolean',
+    initialValue: false,
   }),
 ]
 
