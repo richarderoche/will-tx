@@ -8,27 +8,31 @@ import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
 import Card from '../shared/Card'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function BlockStatsCard({ block }: { block: PbBlockStatsCard }) {
   const { title, stats } = block
   const hasStats = stats && stats.length > 0
 
   const cardRef = useRef<HTMLDivElement>(null)
 
-  gsap.registerPlugin(ScrollTrigger)
-
   useGSAP(
     () => {
-      if (!cardRef.current) return
+      const el = cardRef.current
+      if (!el) return
+
       gsap.set('.line-in', { opacity: 0, y: 20 })
-      gsap.set(cardRef.current, { visibility: 'visible' })
+      gsap.set(el, { visibility: 'visible' })
+
       gsap
-        .timeline()
-        .from(cardRef.current, {
+        .timeline({
           scrollTrigger: {
-            trigger: cardRef.current,
-            start: 'top 90%',
+            trigger: el,
+            start: 'top 66%',
             markers: false,
           },
+        })
+        .from(el, {
           opacity: 0,
           scale: 0.9,
           duration: 0.8,
@@ -52,9 +56,12 @@ export function BlockStatsCard({ block }: { block: PbBlockStatsCard }) {
             duration: 1.5,
             snap: { textContent: 1 },
             onUpdate: function () {
-              this.targets().forEach((el) => {
-                const n = parseInt(String(el.textContent).replace(/,/g, ''), 10)
-                if (!Number.isNaN(n)) el.textContent = n.toLocaleString()
+              this.targets().forEach((node) => {
+                const n = parseInt(
+                  String(node.textContent).replace(/,/g, ''),
+                  10
+                )
+                if (!Number.isNaN(n)) node.textContent = n.toLocaleString()
               })
             },
           },

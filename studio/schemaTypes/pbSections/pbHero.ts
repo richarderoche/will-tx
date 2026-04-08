@@ -64,10 +64,10 @@ export default defineType({
       type: 'pbBlocks',
     }),
     defineField({
-      title: 'Image Grid (Add exactly 4 or 9 images)',
+      title: 'Image Grid (Rounds to first 1, 4, or 9 images)',
       name: 'imageGrid',
       type: 'array',
-      validation: (Rule) => Rule.max(9).min(4),
+      validation: (Rule) => Rule.max(9).min(1),
       of: [
         {
           type: 'object',
@@ -81,6 +81,7 @@ export default defineType({
                   previews: [{ title: '3:4', aspectRatio: 0.75 }],
                 },
               },
+              validation: (Rule) => Rule.required(),
             }),
             defineField({
               title: 'Image Alt Text',

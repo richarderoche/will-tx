@@ -1,8 +1,9 @@
 import { PbHero } from '@/sanity.types'
 
-import { getOuterSettings } from '@/lib/utils'
+import { cn, getOuterSettings } from '@/lib/utils'
+import ImageBasic from '../shared/ImageBasic'
 import SiteGrid from '../shared/SiteGrid'
-import SiteWidth from '../shared/SiteWidth'
+import SiteWidth, { SITE_MAX_WIDTH } from '../shared/SiteWidth'
 import GridCol from './GridCol'
 
 export default function SectionHero({
@@ -17,6 +18,22 @@ export default function SectionHero({
   const { pbBlocks, imageGrid } = section
   const hasBlocks = pbBlocks && pbBlocks.length > 0
   const hasImageGrid = imageGrid && imageGrid.length > 0
+  // trim imageGrid to 9, 4, or 1
+  let trimmedImageGrid = hasImageGrid ? imageGrid?.slice(0, 9) : []
+  if (trimmedImageGrid?.length < 9) {
+    trimmedImageGrid = trimmedImageGrid?.slice(0, 4)
+  }
+  if (trimmedImageGrid?.length < 4) {
+    trimmedImageGrid = trimmedImageGrid?.slice(0, 1)
+  }
+  const imgCount = trimmedImageGrid?.length
+  const colCount = imgCount === 9 ? 3 : imgCount === 4 ? 2 : 1
+  const imgColClass =
+    colCount === 3
+      ? 'grid-cols-3'
+      : colCount === 2
+        ? 'grid-cols-2'
+        : 'grid-cols-1'
 
   if (!hasBlocks && !hasImageGrid) {
     return null
@@ -30,6 +47,7 @@ export default function SectionHero({
             col={{
               _key: sectionKey,
               pbBlocks,
+              revealEffect: 'none',
               columnSettings: {
                 _type: 'pbColSettings',
                 size: {
@@ -48,7 +66,54 @@ export default function SectionHero({
             outerSettings={getOuterSettings(12)}
           />
         )}
+        {hasImageGrid && (
+          <div
+            className={cn(
+              'col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 grid',
+              imgColClass
+            )}
+          >
+            {trimmedImageGrid.map((image) => {
+              if (!image.image) {
+                return null
+              }
+              return (
+                <div key={image._key}>
+                  <ImageBasic
+                    image={image.image}
+                    alt={image.imageAltText || ''}
+                    ratio={0.75}
+                    priority={isFirst ? true : false}
+                    sizes={GridImageSizes(colCount)}
+                    maxDimension={
+                      colCount === 3 ? 200 : colCount === 2 ? 300 : 600
+                    }
+                  />
+                </div>
+              )
+            })}
+          </div>
+        )}
       </SiteGrid>
     </SiteWidth>
   )
+}
+
+export function GridImageSizes(colCount: number) {
+  const m = (12 / 12 / colCount) * 100
+  const t = (6 / 12 / colCount) * 100
+  const d = (5 / 12 / colCount) * 100
+
+  const mVw = m + 'vw'
+  const tVw = t === m ? null : '(min-width: 768px) ' + t + 'vw, '
+  const dVw =
+    d === t ? null : d === m ? null : '(min-width: 1024px) ' + d + 'vw, '
+  const maxVw =
+    '(min-width: ' +
+    SITE_MAX_WIDTH +
+    'px) ' +
+    SITE_MAX_WIDTH * (d / 100) +
+    'px, '
+
+  return `${maxVw}${dVw ? dVw : ''}${tVw ? tVw : ''}${mVw}`
 }
