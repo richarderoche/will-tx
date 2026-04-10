@@ -37,7 +37,7 @@ export function BlockNumberedList({ block }) {
         block.textStyle || 'ts-p-md',
         block.color,
         block.balanceLines ? 'text-balance' : 'text-pretty',
-        'flex flex-col gap-em'
+        'flex flex-col gap-[1.4em]'
       )}
     >
       {block.listItems.map((item, index) => (

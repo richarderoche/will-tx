@@ -94,7 +94,7 @@ export default defineType({
       type: 'image',
       options: {
         hotspot: {
-          previews: [{ title: '5:2', aspectRatio: 2.5 }],
+          previews: [{ title: '9:4', aspectRatio: 2.25 }],
         },
       },
       hidden: ({ parent }) => !parent?.cardMode,

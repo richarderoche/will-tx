@@ -21,7 +21,7 @@ export default function SectionHero({
   sectionKey: string
   isFirst: boolean
 }) {
-  const { pbBlocks, imageGrid } = section
+  const { pbBlocks, imageGrid, imageGridBlushTint } = section
   const hasBlocks = pbBlocks && pbBlocks.length > 0
   const hasImageGrid = imageGrid && imageGrid.length > 0
   // trim imageGrid to 9, 4, or 1
@@ -109,7 +109,7 @@ export default function SectionHero({
                 return null
               }
               return (
-                <div className="hero-grid-image" key={image._key}>
+                <div className="hero-grid-image relative" key={image._key}>
                   <ImageBasic
                     image={image.image}
                     alt={image.imageAltText || ''}
@@ -120,6 +120,9 @@ export default function SectionHero({
                       colCount === 3 ? 200 : colCount === 2 ? 300 : 600
                     }
                   />
+                  {imageGridBlushTint && (
+                    <div className="absolute inset-0 bg-[#A36E8B] mix-blend-color pointer-events-none opacity-20"></div>
+                  )}
                 </div>
               )
             })}

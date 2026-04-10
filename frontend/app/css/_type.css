@@ -10,7 +10,7 @@ Example: ts-size-24/40 → font-size = var(--gut) × (24÷36)
 
 /* Headings */
 .ts-h1 {
-  @apply leading-130 font-normal ts-size-30/18 md:ts-size-30/30 lg:ts-size-40/40;
+  @apply leading-130 font-normal ts-size-30/18 md:ts-size-30/30 lg:ts-size-44/40;
 }
 
 .ts-h2 {

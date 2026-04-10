@@ -11,12 +11,16 @@ export default function SectionCard({
   section: NonNullable<PbSections>[number]
   isFirst: boolean
 }) {
+  if (section._type === 'pbHero') {
+    return children
+  }
   const { cardMode, cardBannerImage, cardBannerImageAlt } =
     section.sectionSettings || {}
 
-  if (!cardMode) {
+  if (!cardMode || !cardBannerImage) {
     return children
   }
+
   const outerSettings = getOuterSettings(section.rowWidth)
   const trueSizes = outerSettings.size
     ? getTrueSizes(outerSettings.size)
@@ -30,7 +34,7 @@ export default function SectionCard({
               image={cardBannerImage}
               alt={cardBannerImageAlt || ''}
               sizes={trueSizes}
-              ratio={2.5}
+              ratio={2.25}
               priority={isFirst ? true : false}
             />
           </div>

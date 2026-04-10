@@ -8,6 +8,10 @@ export default defineType({
   icon: CogIcon,
   groups: [
     {
+      name: 'header',
+      title: 'Header',
+    },
+    {
       name: 'seo',
       title: 'SEO',
     },
@@ -17,6 +21,12 @@ export default defineType({
     },
   ],
   fields: [
+    defineField({
+      name: 'headerCTA',
+      title: 'Header CTA',
+      type: 'navExternal',
+      group: 'header',
+    }),
     defineField({
       name: 'title',
       description: 'Used as the <title> tag for SEO',

@@ -115,7 +115,8 @@ export const homeNavQuery = defineQuery(`
         _type == "pbHero" => sectionSettingsSlim.sectionTitle,
         sectionSettings.sectionTitle
       ),
-    }
+    },
+    "headerCTA": *[_type == "settings"][0].headerCTA
   }
 `)
 
@@ -154,12 +155,6 @@ export const sitemapByTypeQuery = defineQuery(`
 export const settingsQuery = defineQuery(`
   *[_type == "settings"][0]{
     ...,
-    "headerNav": headerNav.navItems[]{
-      ${link},
-    },
-    "footerNav": footerNav.navItems[]{
-      ${link},
-    },
     ${seo},
   }
 `)

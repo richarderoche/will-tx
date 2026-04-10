@@ -64,6 +64,12 @@ export default defineType({
       type: 'pbBlocks',
     }),
     defineField({
+      title: 'Image Grid Blush Tint',
+      name: 'imageGridBlushTint',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       title: 'Image Grid (Rounds to first 1, 4, or 9 images)',
       name: 'imageGrid',
       type: 'array',

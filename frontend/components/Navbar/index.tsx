@@ -13,6 +13,8 @@ import SkipLink from './SkipLink'
 export default function Navbar(props: { navData: HomeNavQueryResult }) {
   const { navData } = props
   const anchorLinks = navData?.anchorLinks || []
+  const headerCTA = navData?.headerCTA || null
+  const hasHeaderCTA = headerCTA && headerCTA.title && headerCTA.url
   const hasAnchorLinks = anchorLinks && anchorLinks.length > 0
   const headerColorMode = useStore((state) => state.headerColorMode)
   const setHeaderHeight = useStore((state) => state.setHeaderHeight)
@@ -28,16 +30,19 @@ export default function Navbar(props: { navData: HomeNavQueryResult }) {
     <header
       ref={headerRef as Ref<HTMLDivElement>}
       className={cn(
-        'h-header fixed top-0 left-0 w-full z-99 theme-vars-only',
+        'h-header fixed top-0 left-0 w-full z-99 theme-vars-only pointer-events-none',
         headerColorMode
       )}
     >
       <SkipLink />
       <SiteWidth className="h-full flex items-center justify-between gap-x-gut ts-main-nav text-body transition-colors duration-200">
         {hasAnchorLinks && (
-          <nav className="max-lg:hidden flex items-center gap-x-gut">
+          <nav className="max-lg:hidden flex items-center gap-x-gut-150">
             {anchorLinks.map(({ _key, sectionTitle }) => (
-              <div key={`nav-${_key}`} className="group">
+              <div
+                key={`nav-${_key}`}
+                className="group font-medium pointer-events-auto"
+              >
                 <Link href={`#${formatHtmlId(sectionTitle || '')}`}>
                   {sectionTitle}
                 </Link>
@@ -48,10 +53,22 @@ export default function Navbar(props: { navData: HomeNavQueryResult }) {
         )}
         <MobileNav navData={navData} />
 
-        <Link href="/#">
-          <Logo className="w-auto h-btn" aria-hidden="true" />
-          <span className="sr-only">Will Therapeutics</span>
-        </Link>
+        <div className="flex items-center gap-x-gut">
+          {hasHeaderCTA && (
+            <Link
+              href={headerCTA.url || ''}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="max-lg:hidden pointer-events-auto font-medium nice-underline"
+            >
+              {headerCTA.title}
+            </Link>
+          )}
+          <Link href="/#" className="pointer-events-auto">
+            <Logo className="w-auto h-btn" aria-hidden="true" />
+            <span className="sr-only">Will Therapeutics</span>
+          </Link>
+        </div>
       </SiteWidth>
     </header>
   )

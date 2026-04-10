@@ -19,6 +19,8 @@ export default function MobileNav(props: NavbarProps) {
   const { navData } = props
   const anchorLinks = navData?.anchorLinks || []
   const hasAnchorLinks = anchorLinks && anchorLinks.length > 0
+  const headerCTA = navData?.headerCTA || null
+  const hasHeaderCTA = headerCTA && headerCTA.title && headerCTA.url
   const isMobileNavOpen = useStore((state) => state.isMobileNavOpen)
   const setIsMobileNavOpen = useStore((state) => state.setIsMobileNavOpen)
   const setPauseLenis = useStore((state) => state.setPauseLenis)
@@ -76,7 +78,7 @@ export default function MobileNav(props: NavbarProps) {
           aria-expanded={isMobileNavOpen}
           aria-controls="mobile-nav"
           aria-label="Toggle Menu"
-          className="-translate-x-[24%]"
+          className="-translate-x-[24%] pointer-events-auto"
         >
           <MenuIcon style={{ fontSize: 40 }} />
         </button>
@@ -84,7 +86,7 @@ export default function MobileNav(props: NavbarProps) {
         <nav
           id="mobile-nav"
           ref={navRef}
-          className="fixed top-0 bottom-0 right-0 w-full light-theme z-1 overflow-auto translate-x-full px-gut"
+          className="fixed top-0 bottom-0 right-0 w-full light-theme z-1 overflow-auto translate-x-full px-gut pointer-events-auto"
           data-lenis-prevent
           role="navigation"
           aria-label="Mobile Navigation"
@@ -112,6 +114,16 @@ export default function MobileNav(props: NavbarProps) {
                   {sectionTitle}
                 </Link>
               ))}
+            {hasHeaderCTA && (
+              <Link
+                href={headerCTA.url || ''}
+                onClick={handleCloseMobileNav}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {headerCTA.title}
+              </Link>
+            )}
           </div>
         </nav>
       </div>

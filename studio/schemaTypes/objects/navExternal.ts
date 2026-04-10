@@ -2,7 +2,7 @@ import { LaunchIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  title: 'External Link',
+  title: 'URL Link',
   name: 'navExternal',
   type: 'object',
   icon: LaunchIcon,
@@ -17,7 +17,6 @@ export default defineType({
       title: 'URL',
       name: 'url',
       type: 'url',
-      description: 'enter an external URL',
       validation: (Rule) =>
         Rule.uri({
           scheme: ['http', 'https', 'mailto', 'tel'],
