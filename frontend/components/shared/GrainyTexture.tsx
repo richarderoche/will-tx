@@ -3,7 +3,7 @@ export default function GrainyTexture() {
 
   return (
     <div
-      className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-20 blur-[.5px]"
+      className="absolute inset-0 pointer-events-none mix-blend-soft-light opacity-25 blur-[.5px]"
       style={{
         backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
           noiseSvg

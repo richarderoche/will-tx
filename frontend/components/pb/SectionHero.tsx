@@ -100,7 +100,7 @@ export default function SectionHero({
           <div
             ref={imageGridRef}
             className={cn(
-              'col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 grid',
+              'col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 grid relative -z-1',
               imgColClass
             )}
           >
