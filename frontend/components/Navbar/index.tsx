@@ -1,41 +1,55 @@
-import { sanityFetch } from '@/sanity/lib/live'
-import { settingsQuery } from '@/sanity/lib/queries'
-import type { NavItem } from '@/types'
+'use client'
+import { useStore } from '@/lib/store'
+import { useMeasure } from '@/lib/useMeasure'
+import { cn, formatHtmlId } from '@/lib/utils'
+import { HomeNavQueryResult } from '@/sanity.types'
 import Link from 'next/link'
-import NavLinks from '../shared/NavLinks'
+import { Ref, useEffect } from 'react'
+import Logo from '../icons/Logo'
 import SiteWidth from '../shared/SiteWidth'
-import MobileNav from './MobileNav'
 import SkipLink from './SkipLink'
 
-export default async function Navbar() {
-  const { data } = await sanityFetch({
-    query: settingsQuery,
-    stega: false,
-  })
-  const headerNav = data?.headerNav || ([] as NavItem[])
-  const siteTitle = data?.title || 'Missing Site Title'
+export default function Navbar(props: { navData: HomeNavQueryResult }) {
+  const { navData } = props
+  const anchorLinks = navData?.anchorLinks || []
+  const hasAnchorLinks = anchorLinks && anchorLinks.length > 0
+  const headerColorMode = useStore((state) => state.headerColorMode)
+  const setHeaderHeight = useStore((state) => state.setHeaderHeight)
+  const [headerRef, headerDimensions] = useMeasure()
+
+  useEffect(() => {
+    if (headerDimensions.height && headerDimensions.height > 0) {
+      setHeaderHeight(headerDimensions.height)
+    }
+  }, [headerDimensions.height, setHeaderHeight])
 
   return (
-    <header className="h-header fixed top-0 left-0 w-full z-10">
+    <header
+      ref={headerRef as Ref<HTMLDivElement>}
+      className={cn(
+        'h-header fixed top-0 left-0 w-full z-99 theme-vars-only',
+        headerColorMode
+      )}
+    >
       <SkipLink />
-      <SiteWidth className="h-full flex items-center justify-between gap-x-gut ts-p-md">
-        <Link className="text-accent ts-h5" href="/">
-          {siteTitle}
-        </Link>
-
-        {headerNav && (
-          <nav role="navigation" className="h-full py-gut-33">
-            {/* Desktop Header Menu */}
-            <NavLinks
-              navItems={headerNav}
-              ulClasses="hidden lg:flex flex-wrap items-center gap-x-1 bg-accent h-full rounded-full px-em"
-              liClasses="px-em"
-              liActiveClasses="text-bg"
-            />
-            {/* Mobile Header Menu */}
-            <MobileNav headerNav={headerNav} />
+      <SiteWidth className="h-full flex items-center justify-between gap-x-gut ts-main-nav text-body transition-colors duration-200">
+        {hasAnchorLinks && (
+          <nav className="max-lg:hidden flex items-center gap-x-gut">
+            {anchorLinks.map(({ _key, sectionTitle }) => (
+              <Link
+                key={`nav-${_key}`}
+                href={`#${formatHtmlId(sectionTitle || '')}`}
+              >
+                {sectionTitle}
+              </Link>
+            ))}
           </nav>
         )}
+
+        <Link href="/#">
+          <Logo className="w-auto h-btn" aria-hidden="true" />
+          <span className="sr-only">Will Therapeutics</span>
+        </Link>
       </SiteWidth>
     </header>
   )

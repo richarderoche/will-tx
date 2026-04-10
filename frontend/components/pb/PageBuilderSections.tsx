@@ -1,8 +1,13 @@
 'use client'
 
+import { useStore } from '@/lib/store'
 import { cn, formatHtmlId } from '@/lib/utils'
 import { PbSections } from '@/sanity.types'
 import { PageBuilderData } from '@/types'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+import { useRef } from 'react'
 import ImageBasic from '../shared/ImageBasic'
 import {
   SanityPathSegment,
@@ -14,6 +19,8 @@ import SectionGridMulti from './SectionGridMulti'
 import SectionGridSingle from './SectionGridSingle'
 import SectionHero from './SectionHero'
 import SectionPipeline from './SectionPipeline'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export interface PageBuilderContentProps {
   data: PageBuilderData
@@ -29,10 +36,40 @@ export default function PageBuilderSections({
   firstPbSectionKey: string
 }) {
   const { getDataAttribute } = useSanityDataAttribute()
+  const sectionsRef = useRef<HTMLDivElement>(null)
+  const headerHeight = useStore((state) => state.headerHeight)
+
+  useGSAP(
+    () => {
+      const root = sectionsRef.current
+      if (!root) return
+
+      const markerPx = Math.max(0, headerHeight / 2)
+      const setHeaderColorMode = useStore.getState().setHeaderColorMode
+      const sectionEls = root.querySelectorAll<HTMLElement>('.pb-section')
+
+      sectionEls.forEach((sectionEl) => {
+        const theme = sectionEl.dataset.colorTheme
+        if (!theme) return
+
+        ScrollTrigger.create({
+          trigger: sectionEl,
+          start: `top ${markerPx}px`,
+          end: `bottom ${markerPx}px`,
+          markers: false,
+          onToggle: (self) => {
+            if (self.isActive) setHeaderColorMode(theme)
+          },
+        })
+      })
+    },
+    { scope: sectionsRef, dependencies: [headerHeight, pbSections] }
+  )
+
   if (!pbSections?.length) return null
 
   return (
-    <div className="flex flex-col">
+    <div ref={sectionsRef} className="flex flex-col">
       {pbSections.map((section) => {
         const { _key, _type } = section
         const {
@@ -55,20 +92,19 @@ export default function PageBuilderSections({
 
         const sectionPath: SanityPathSegment[] = ['pbSections', { _key }]
         const isFirst = _key === firstPbSectionKey
-
+        const isAnchor = enableAnchorLink && sectionTitle
         return (
           <section
-            id={
-              enableAnchorLink && sectionTitle
-                ? formatHtmlId(sectionTitle)
-                : 'section-' + _key
-            }
+            id={isAnchor ? formatHtmlId(sectionTitle) : 'section-' + _key}
             key={_key}
             className={cn(
+              'pb-section',
               colorTheme,
-              backgroundImage && 'relative overflow-hidden'
+              backgroundImage && 'relative overflow-hidden',
+              isAnchor && 'scroll-mt-header'
             )}
             data-sanity={getDataAttribute(sectionPath)}
+            data-color-theme={colorTheme}
           >
             {backgroundImage && (
               <ImageBasic

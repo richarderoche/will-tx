@@ -1,10 +1,11 @@
 import '@/app/globals.css'
 import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 import GlobalScripts from '@/components/shared/GlobalScripts'
 import { GSAP } from '@/components/shared/GSAP'
 import { Lenis } from '@/components/shared/Lenis'
 import { sanityFetch, SanityLive } from '@/sanity/lib/live'
-import { settingsQuery } from '@/sanity/lib/queries'
+import { homeNavQuery, settingsQuery } from '@/sanity/lib/queries'
 import { urlForOpenGraphImage } from '@/sanity/lib/utils'
 import { Metadata, Viewport } from 'next'
 import { VisualEditing } from 'next-sanity/visual-editing'
@@ -90,6 +91,10 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const { isEnabled: isDraftMode } = await draftMode()
+  const { data: navData } = await sanityFetch({
+    query: homeNavQuery,
+    stega: false,
+  })
 
   return (
     <html
@@ -101,7 +106,7 @@ export default async function RootLayout({
         <Lenis />
         <GSAP />
         <div className="flex min-h-screen flex-col justify-start ts-p-md">
-          {/* <Navbar /> */}
+          <Navbar navData={navData} />
           <main className="grow" id="main-content">
             {children}
           </main>

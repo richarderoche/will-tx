@@ -102,6 +102,23 @@ const pb = `
 `
 
 // QUERIES
+export const homeNavQuery = defineQuery(`
+  *[_type == "home"][0]{
+    "anchorLinks": pbSections[
+      select(
+        _type == "pbHero" => sectionSettingsSlim.enableAnchorLink,
+        sectionSettings.enableAnchorLink
+      ) == true
+    ]{
+      _key,
+      "sectionTitle": select(
+        _type == "pbHero" => sectionSettingsSlim.sectionTitle,
+        sectionSettings.sectionTitle
+      ),
+    }
+  }
+`)
+
 export const homePageQuery = defineQuery(`
   *[_type == "home"][0]{
     ...,
