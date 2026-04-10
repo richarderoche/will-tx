@@ -44,7 +44,7 @@ export default function Revealer({
           opacity: 0,
           duration: DURATION,
           ease: 'expo.out',
-          stagger: 0.2,
+          stagger: 0.15,
           delay: DELAY,
           scrollTrigger: { trigger: el, start: TRIGGER_START, markers: false },
         })

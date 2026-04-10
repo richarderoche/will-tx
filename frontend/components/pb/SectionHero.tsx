@@ -77,7 +77,7 @@ export default function SectionHero({
             col={{
               _key: sectionKey,
               pbBlocks,
-              revealEffect: 'stagger',
+              revealEffect: 'fade-up',
               columnSettings: {
                 _type: 'pbColSettings',
                 size: {
