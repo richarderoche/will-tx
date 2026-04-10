@@ -6,17 +6,19 @@ import { FocusTrap } from 'focus-trap-react'
 import gsap from 'gsap'
 import { useEffect, useRef } from 'react'
 
-import NavLinks from '@/components/shared/NavLinks'
 import { useStore } from '@/lib/store'
-import { NavItem } from '@/types'
+import { formatHtmlId } from '@/lib/utils'
+import { HomeNavQueryResult } from '@/sanity.types'
+import Link from 'next/link'
 
 interface NavbarProps {
-  headerNav: NavItem[]
+  navData: HomeNavQueryResult
 }
 
 export default function MobileNav(props: NavbarProps) {
-  const { headerNav } = props
-
+  const { navData } = props
+  const anchorLinks = navData?.anchorLinks || []
+  const hasAnchorLinks = anchorLinks && anchorLinks.length > 0
   const isMobileNavOpen = useStore((state) => state.isMobileNavOpen)
   const setIsMobileNavOpen = useStore((state) => state.setIsMobileNavOpen)
   const setPauseLenis = useStore((state) => state.setPauseLenis)
@@ -58,8 +60,8 @@ export default function MobileNav(props: NavbarProps) {
   useGSAP(
     () => {
       gsap.to(navRef.current, {
-        x: isMobileNavOpen ? 0 : '-100%',
-        duration: isMobileNavOpen ? 0.6 : 0.3,
+        x: isMobileNavOpen ? 0 : '100%',
+        duration: 0.6,
         ease: 'expo.out',
       })
     },
@@ -74,31 +76,42 @@ export default function MobileNav(props: NavbarProps) {
           aria-expanded={isMobileNavOpen}
           aria-controls="mobile-nav"
           aria-label="Toggle Menu"
+          className="-translate-x-[24%]"
         >
-          {isMobileNavOpen ? (
-            <CloseIcon style={{ fontSize: 40 }} />
-          ) : (
-            <MenuIcon style={{ fontSize: 40 }} />
-          )}
+          <MenuIcon style={{ fontSize: 40 }} />
         </button>
 
         <nav
           id="mobile-nav"
           ref={navRef}
-          className="fixed top-0 bottom-0 left-0 w-9/12 bg-white z-10 overflow-auto -translate-x-full"
+          className="fixed top-0 bottom-0 right-0 w-full light-theme z-1 overflow-auto translate-x-full px-gut"
           data-lenis-prevent
           role="navigation"
           aria-label="Mobile Navigation"
           inert={!isMobileNavOpen}
         >
-          <div>
-            <NavLinks
-              navItems={headerNav}
-              ulClasses="flex flex-col gap-y-4 mt-5 p-4 md:p-8"
-              liClasses="text-3xl"
-              liActiveClasses="opacity-50"
-              onClick={handleCloseMobileNav}
-            />
+          <div className="h-header flex items-center">
+            <button
+              onClick={handleToggleMobileNav}
+              aria-expanded={isMobileNavOpen}
+              aria-controls="mobile-nav"
+              aria-label="Toggle Menu"
+              className="-translate-x-[24%]"
+            >
+              <CloseIcon style={{ fontSize: 40 }} />
+            </button>
+          </div>
+          <div className="flex flex-col gap-y-gut pt-gut pb-header ts-main-nav">
+            {hasAnchorLinks &&
+              anchorLinks.map(({ _key, sectionTitle }) => (
+                <Link
+                  key={`nav-${_key}`}
+                  href={`#${formatHtmlId(sectionTitle || '')}`}
+                  onClick={handleCloseMobileNav}
+                >
+                  {sectionTitle}
+                </Link>
+              ))}
           </div>
         </nav>
       </div>

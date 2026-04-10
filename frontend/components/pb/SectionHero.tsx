@@ -1,11 +1,16 @@
 import { PbHero } from '@/sanity.types'
 
 import { cn, getOuterSettings } from '@/lib/utils'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/all'
+import { useRef } from 'react'
 import ImageBasic from '../shared/ImageBasic'
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth, { SITE_MAX_WIDTH } from '../shared/SiteWidth'
 import GridCol from './GridCol'
 
+gsap.registerPlugin(ScrollTrigger)
 export default function SectionHero({
   section,
   sectionKey,
@@ -35,19 +40,42 @@ export default function SectionHero({
         ? 'grid-cols-2'
         : 'grid-cols-1'
 
+  const imageGridRef = useRef<HTMLDivElement>(null)
+  useGSAP(
+    () => {
+      if (!imageGridRef.current) return
+      ScrollTrigger.create({
+        trigger: imageGridRef.current,
+        start: 'top 95%',
+        markers: false,
+        onEnter: () => {
+          gsap.from('.hero-grid-image', {
+            filter: 'blur(10px)',
+            scale: 0.8,
+            opacity: 0,
+            duration: 2,
+            ease: 'expo.out',
+            stagger: 0.12,
+          })
+        },
+      })
+    },
+    { scope: imageGridRef }
+  )
+
   if (!hasBlocks && !hasImageGrid) {
     return null
   }
 
   return (
     <SiteWidth className="py-header">
-      <SiteGrid yGaps={true} yAlignment="items-center">
+      <SiteGrid yAlignment="items-center max-lg:pt-gut gap-y-gut-200">
         {hasBlocks && (
           <GridCol
             col={{
               _key: sectionKey,
               pbBlocks,
-              revealEffect: 'none',
+              revealEffect: 'stagger',
               columnSettings: {
                 _type: 'pbColSettings',
                 size: {
@@ -68,6 +96,7 @@ export default function SectionHero({
         )}
         {hasImageGrid && (
           <div
+            ref={imageGridRef}
             className={cn(
               'col-span-12 md:col-span-6 lg:col-span-5 lg:col-start-8 grid',
               imgColClass
@@ -78,7 +107,7 @@ export default function SectionHero({
                 return null
               }
               return (
-                <div key={image._key}>
+                <div className="hero-grid-image" key={image._key}>
                   <ImageBasic
                     image={image.image}
                     alt={image.imageAltText || ''}

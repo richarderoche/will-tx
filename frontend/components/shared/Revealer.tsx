@@ -9,7 +9,7 @@ import { useRef } from 'react'
 gsap.registerPlugin(ScrollTrigger)
 
 interface RevealerProps extends React.HTMLAttributes<HTMLDivElement> {
-  direction?: 'fade-up' | 'fade-right' | 'fade-only' | 'none'
+  direction?: 'fade-up' | 'fade-right' | 'fade-only' | 'none' | 'stagger'
 }
 
 const TRIGGER_START = 'top 95%'
@@ -24,7 +24,7 @@ export default function Revealer({
 }: RevealerProps) {
   const ref = useRef<HTMLDivElement>(null)
   const reducedMotion = usePrefersReducedMotion()
-  const distance = reducedMotion || direction === 'fade-only' ? 0 : 40
+  const distance = reducedMotion || direction === 'fade-only' ? 0 : 30
 
   useGSAP(
     () => {
@@ -37,18 +37,35 @@ export default function Revealer({
         direction === 'fade-right' ? { x: -distance } : { y: distance }
       const toMove = direction === 'fade-right' ? { x: 0 } : { y: 0 }
 
-      gsap.fromTo(
-        el,
-        { opacity: 0, ...fromMove },
-        {
-          opacity: 1,
-          ...toMove,
+      if (direction === 'stagger') {
+        gsap.from('.column-blocks > *', {
+          y: distance,
+          filter: 'blur(10px)',
+          opacity: 0,
           duration: DURATION,
-          ease: EASE,
+          ease: 'expo.out',
+          stagger: 0.2,
           delay: DELAY,
           scrollTrigger: { trigger: el, start: TRIGGER_START, markers: false },
-        }
-      )
+        })
+      } else {
+        gsap.fromTo(
+          el,
+          { opacity: 0, ...fromMove },
+          {
+            opacity: 1,
+            ...toMove,
+            duration: DURATION,
+            ease: EASE,
+            delay: DELAY,
+            scrollTrigger: {
+              trigger: el,
+              start: TRIGGER_START,
+              markers: false,
+            },
+          }
+        )
+      }
     },
     { scope: ref, dependencies: [direction, distance] }
   )

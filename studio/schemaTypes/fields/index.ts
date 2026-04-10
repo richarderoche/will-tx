@@ -13,6 +13,7 @@ export const revealEffectField = {
   options: {
     list: [
       { title: 'None', value: 'none' },
+      { title: 'Stagger', value: 'stagger' },
       { title: 'Fade In Up', value: 'fade-up' },
       { title: 'Fade In Right', value: 'fade-right' },
     ],

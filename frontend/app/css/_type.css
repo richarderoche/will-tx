@@ -54,7 +54,7 @@ Example: ts-size-24/40 → font-size = var(--gut) × (24÷36)
 
 /* Misc */
 .ts-main-nav {
-  @apply leading-none ts-size-26/18 md:ts-size-26/30 lg:ts-size-15/40;
+  @apply leading-none ts-size-26/18 md:ts-size-30/30 lg:ts-size-15/40;
 }
 
 .inline-link {

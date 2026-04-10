@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Ref, useEffect } from 'react'
 import Logo from '../icons/Logo'
 import SiteWidth from '../shared/SiteWidth'
+import MobileNav from './MobileNav'
 import SkipLink from './SkipLink'
 
 export default function Navbar(props: { navData: HomeNavQueryResult }) {
@@ -45,6 +46,7 @@ export default function Navbar(props: { navData: HomeNavQueryResult }) {
             ))}
           </nav>
         )}
+        <MobileNav navData={navData} />
 
         <Link href="/#">
           <Logo className="w-auto h-btn" aria-hidden="true" />
