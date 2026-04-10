@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useRef } from 'react'
+import GrainyTexture from '../shared/GrainyTexture'
 import ImageBasic from '../shared/ImageBasic'
 import SiteGrid from '../shared/SiteGrid'
 import SiteWidth, { SITE_MAX_WIDTH } from '../shared/SiteWidth'
@@ -70,6 +71,7 @@ export default function SectionHero({
   return (
     <SiteWidth className="py-header">
       <SiteGrid yAlignment="items-center max-lg:pt-gut gap-y-gut-200">
+        <GrainyTexture />
         {hasBlocks && (
           <GridCol
             col={{

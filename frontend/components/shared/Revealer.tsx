@@ -51,8 +51,9 @@ export default function Revealer({
       } else {
         gsap.fromTo(
           el,
-          { opacity: 0, ...fromMove },
+          { filter: 'blur(10px)', opacity: 0, ...fromMove },
           {
+            filter: 'blur(0px)',
             opacity: 1,
             ...toMove,
             duration: DURATION,

@@ -37,12 +37,12 @@ export default function Navbar(props: { navData: HomeNavQueryResult }) {
         {hasAnchorLinks && (
           <nav className="max-lg:hidden flex items-center gap-x-gut">
             {anchorLinks.map(({ _key, sectionTitle }) => (
-              <Link
-                key={`nav-${_key}`}
-                href={`#${formatHtmlId(sectionTitle || '')}`}
-              >
-                {sectionTitle}
-              </Link>
+              <div key={`nav-${_key}`} className="group">
+                <Link href={`#${formatHtmlId(sectionTitle || '')}`}>
+                  {sectionTitle}
+                </Link>
+                <div className="h-1 w-full bg-body opacity-0 transition-all duration-200 ease-in-out group-hover:opacity-50 translate-y-3 scale-x-1 group-hover:scale-x-100"></div>
+              </div>
             ))}
           </nav>
         )}
