@@ -109,6 +109,13 @@ export const homeNavQuery = defineQuery(`
         _type == "pbHero" => sectionSettingsSlim.enableAnchorLink,
         sectionSettings.enableAnchorLink
       ) == true
+      && coalesce(
+        select(
+          _type == "pbHero" => sectionSettingsSlim.enableSection,
+          sectionSettings.enableSection
+        ),
+        true
+      )
     ]{
       _key,
       "sectionTitle": select(
