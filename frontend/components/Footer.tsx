@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="col-span-12 md:col-span-6 md:col-start-7 flex flex-col items-start gap-gut-50">
             <Logo className="w-auto h-gut-200 md:h-gut" />
             <p className="ts-p-xxs text-fg-subtle">
-              &copy; <CurrentYear /> WILL TX, Inc.
+              &copy; <CurrentYear /> Will Therapeutics Inc.
             </p>
           </div>
         </SiteGrid>
